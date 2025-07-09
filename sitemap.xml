@@ -1,0 +1,51 @@
+your-agency-site/
+├── src/app/
+│   ├── layout.tsx                # Global layout: Nav + Footer
+│   ├── page.tsx                  # Home Page (SSG)
+│   ├── about/
+│   │   └── page.tsx              # About Page (SSG)
+│   ├── services/
+│   │   └── page.tsx              # Services Page (ISR)
+│   ├── portfolio/
+│   │   └── page.tsx              # Portfolio Page (ISR)
+│   ├── blog/
+│   │   ├── page.tsx              # Blog List Page (ISR)
+│   │   └── [slug]/
+│   │       └── page.tsx          # Blog Single Page (ISR)
+│   ├── contact/
+│   │   └── page.tsx              # Contact Form Page (CSR)
+│   ├── dashboard/
+│   │   └── page.tsx              # User Dashboard (SSR)
+│   └── api/
+│       └── contact/route.ts      # Contact Form API (Optional)
+│
+├── components/
+│   ├── Navbar.tsx
+│   ├── Footer.tsx
+│   ├── Hero.tsx
+│   ├── ServiceCard.tsx
+│   ├── ProjectCard.tsx
+│   ├── BlogCard.tsx
+│   ├── TestimonialCard.tsx
+│   └── LayoutWrapper.tsx         # (Optional) Wrapper for layout sections
+│
+├── graphql/
+│   ├── client.ts                 # Apollo/urql setup
+│   └── queries.ts                # WPGraphQL Queries
+│
+├── lib/
+│   ├── graphql-client.ts         # GraphQL client logic
+│   └── auth.ts                   # Session/Auth helper (if NextAuth used)
+│
+├── public/
+│   └── images/                   # Static images
+│
+├── styles/
+│   └── globals.css               # Tailwind imports
+│
+├── tailwind.config.js
+├── postcss.config.js
+├── next.config.js
+├── tsconfig.json
+├── package.json
+└── README.md

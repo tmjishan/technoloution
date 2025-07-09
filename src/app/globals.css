@@ -1,17 +1,23 @@
 @import "tailwindcss";
 
+/* -------------------------------------------
+   Google Fonts Import (Poppins only for optimization)
+-------------------------------------------- */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+/* -------------------------------------------
+   CSS Variables: Colors & Fonts
+-------------------------------------------- */
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --font-sans: "Poppins", Arial, Helvetica, "Segoe UI", sans-serif;
+  --font-mono: "Geist Mono", "Fira Mono", "Consolas", monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
+/* -------------------------------------------
+   Dark Mode Overrides
+-------------------------------------------- */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -19,8 +25,150 @@
   }
 }
 
+/* -------------------------------------------
+   Base Body Styles
+-------------------------------------------- */
 body {
-  background: var(--background);
+  background-image: linear-gradient(
+      rgba(10, 10, 10, 0.6),
+      rgba(10, 10, 10, 0.6)
+    ),
+    url("/pexels-mikael-blomkvist-6476257.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-color: var(--background);
+
+  min-height: 100vh;
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  transition: color 0.3s ease, background-color 0.3s ease;
+  position: relative;
+  z-index: 0;
+}
+
+/* -------------------------------------------
+   Accessibility Utility
+-------------------------------------------- */
+.visually-hidden {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}
+
+/* -------------------------------------------
+   Custom Utilities Layer
+-------------------------------------------- */
+@layer utilities {
+  /* Blinking caret animation */
+  .animate-blink {
+    animation: blink 0.8s step-end infinite;
+  }
+
+  @keyframes blink {
+    50% {
+      border-color: transparent;
+    }
+  }
+
+  /* Prevent caret animation, keep text on one line */
+  .animate-caret {
+    animation: none;
+    white-space: nowrap;
+  }
+
+  /* Optional: 3D effect for text */
+  .text-3d {
+    text-shadow: 1px 1px 0 #ccc, 2px 2px 0 #bbb, 3px 3px 0 #aaa;
+  }
+}
+
+/* 🔁 Gradient Background Animation (Animated BG movement left-to-right) */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* ⚡ Utility class to animate gradient shift */
+.animate-gradient {
+  background-size: 200% 200%; /* বিশাল BG size রাখলে shift smooth হয় */
+  animation: gradientShift 6s ease infinite;
+}
+
+/* 🌫️ Fade-in animation with slight upward motion */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px); /* নিচ থেকে উপরে আসছে */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0); /* ঠিক জায়গায় এসে থামে */
+  }
+}
+
+/* 🔧 Utility class for fade-in effect */
+.animate-fade-in {
+  animation: fadeIn 1s ease-out forwards;
+}
+
+/* ⬆️ Slow bounce animation — useful for buttons or arrows */
+@keyframes bounceSlow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* 🧷 Utility class for smooth bounce */
+.animate-bounce-slow {
+  animation: bounceSlow 2s infinite;
+}
+/* Fade in with yellowish glow */
+@keyframes fadeInSoft {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-in-soft {
+  animation: fadeInSoft 1s ease-out forwards;
+}
+
+/* Slight yellow shimmer effect */
+@keyframes yellowGlow {
+  0% {
+    box-shadow: 0 0 0px rgba(250, 204, 21, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 8px rgba(250, 204, 21, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 0px rgba(250, 204, 21, 0.2);
+  }
+}
+.animate-glow-yellow {
+  animation: yellowGlow 2s ease-in-out infinite;
 }
