@@ -51,7 +51,7 @@ export default async function ServicePage() {
                   href={details.serviceButtonUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block bg-yellow-700 hover:bg-yellow-600 text-white px-4 py-2 rounded transition"
+                  className="inline-block bg-yellow-800 hover:bg-yellow-600 text-white px-4 py-2 rounded transition"
                 >
                   {details.buttonLabel}
                 </a>

@@ -1,9 +1,9 @@
 import RevealText from "@/components/RevealText";
 
-export default function ContactPage() {
+export default function BlogPage() {
   return (
     <div>
-      <RevealText text="CONtent" />
+      <RevealText text="Blog" />
     </div>
   );
 }
