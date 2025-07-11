@@ -1,65 +1,31 @@
-import { fetchServicesData } from "@/lib/graphql-client";
-import parse from "html-react-parser";
-import Image from "next/image";
+import ServicePage from "@/components/serviceDetails";
 
-export default async function ServicePage() {
-  const data = await fetchServicesData();
-
-  if (!Array.isArray(data) || data.length === 0) {
-    return (
-      <p className="text-center text-yellow-700 py-10">No services found.</p>
-    );
-  }
-
+export default function Page() {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 md:p-6 max-w-7xl mx-auto">
-      {data.map((item: any, index: number) => {
-        const details = item.serviceDetails;
+    <>
+      <section className="px-4 py-16 md:py-24 bg-gray-50 dark:bg-gray-900/60 rounded-4xl">
+        <div className="max-w-5xl mx-auto grid gap-6 text-center">
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
+            Web, Marketing & Creative Solutions That Elevate Your Brand
+          </h2>
+          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 tracking-wide">
+            At{" "}
+            <span className="font-semibold text-indigo-600 dark:text-indigo-400">
+              TechnoLotion
+            </span>
+            , we help businesses grow faster with result-driven{" "}
+            <strong>Web Development</strong>, <strong>Digital Marketing</strong>
+            , <strong>Virtual Assistant</strong>, and{" "}
+            <strong>Graphics Design</strong> services. From building
+            high-performing websites to managing your brand’s online presence —
+            we’ve got you covered.
+          </p>
+        </div>
+      </section>
 
-        return (
-          <div
-            key={index}
-            className="bg-gray-800/70 p-6 rounded-lg shadow-md flex flex-col gap-4"
-          >
-            <h2 className="text-3xl font-semibold text-white">
-              {details.serviceTitle}
-            </h2>
-
-            <h5 className="text-gray-400 text-xl">
-              {details.servicesSubtitle}
-            </h5>
-
-            {details.serviceIcon?.node?.sourceUrl && (
-              <div className="relative w-full h-40 overflow-hidden rounded-md">
-                <Image
-                  src={details.serviceIcon.node.sourceUrl}
-                  alt="Service Icon"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                />
-              </div>
-            )}
-
-            <div className="text-gray-300 text-md leading-relaxed space-x-16 py-5">
-              {parse(details.fullDescription)}
-            </div>
-
-            {details.serviceButtonUrl && (
-              <div className="mt-auto">
-                <a
-                  href={details.serviceButtonUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block bg-yellow-700 hover:bg-yellow-600 text-white px-4 py-2 rounded transition"
-                >
-                  {details.buttonLabel}
-                </a>
-              </div>
-            )}
-          </div>
-        );
-      })}
-    </div>
+      <section className="px-4 pb-20 md:pb-32">
+        <ServicePage />
+      </section>
+    </>
   );
 }
