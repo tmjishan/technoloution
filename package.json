@@ -12,6 +12,7 @@
     "@apollo/client": "^3.13.8",
     "clsx": "^2.1.1",
     "graphql": "^16.11.0",
+    "html-react-parser": "^5.2.5",
     "lodash": "^4.17.21",
     "next": "15.3.5",
     "react": "^19.0.0",

@@ -55,6 +55,7 @@ export async function fetchServicesData(): Promise<
     buttonLabel: string;
     serviceButtonUrl: string;
     displayOnHome: boolean;
+    serviceIcon: string;
   }[]
 > {
   try {
