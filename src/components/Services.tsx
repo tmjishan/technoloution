@@ -1,5 +1,6 @@
+export const revalidate = 60;
 import { fetchServicesData } from "@/lib/graphql-client";
-import { Service } from "@/type/type"; // ঠিক path দাও
+import { Service } from "@/type/type";
 import Image from "next/image";
 import Link from "next/link";
 
