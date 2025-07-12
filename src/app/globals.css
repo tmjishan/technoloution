@@ -1,8 +1,4 @@
 @import "tailwindcss";
-
-/* -------------------------------------------
-   Google Fonts Import (Poppins only for optimization)
--------------------------------------------- */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
 
 /* -------------------------------------------
@@ -39,14 +35,11 @@ body {
   background-position: center;
   background-attachment: fixed;
   background-color: var(--background);
-
   min-height: 100vh;
   color: var(--foreground);
   font-family: var(--font-sans);
-
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
   transition: color 0.3s ease, background-color 0.3s ease;
   position: relative;
   z-index: 0;
@@ -171,4 +164,77 @@ body {
 }
 .animate-glow-yellow {
   animation: yellowGlow 2s ease-in-out infinite;
+}
+/* --------------------------------------------TEXT REAVEL------------------------------------------------------ */
+.reveal {
+  position: relative;
+  display: flex;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  white-space: pre;
+}
+
+.reveal span {
+  opacity: 0;
+  transform: scale(0);
+  animation: fade-in 2.4s forwards;
+}
+
+.reveal::before,
+.reveal::after {
+  position: absolute;
+  content: "";
+  top: 0;
+  height: 100%;
+  width: 2px;
+  background: #733e0a;
+  opacity: 0;
+  transform: scale(0);
+}
+
+.reveal::before {
+  left: 50%;
+  animation: slide-left 1.5s cubic-bezier(0.7, -0.6, 0.3, 1.5) forwards;
+}
+
+.reveal::after {
+  right: 50%;
+  animation: slide-right 1.5s cubic-bezier(0.7, -0.6, 0.3, 1.5) forwards;
+}
+
+@keyframes fade-in {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slide-left {
+  to {
+    left: -6%;
+    opacity: 1;
+    transform: scale(0.9);
+  }
+}
+
+@keyframes slide-right {
+  to {
+    right: -6%;
+    opacity: 1;
+    transform: scale(0.9);
+  }
+}
+/* ----------------------------------------Location Animation--------------------------------------------------- */
+@keyframes zoomBounce {
+  0%,
+  100% {
+    transform: scale(1) translateY(0);
+  }
+  50% {
+    transform: scale(1.05) translateY(-6px);
+  }
+}
+
+.animate-zoom-bounce {
+  animation: zoomBounce 0.6s ease-in-out forwards;
 }

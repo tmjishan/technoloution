@@ -26,7 +26,7 @@ export async function fetchHeroData(): Promise<{
   heroTitle: string;
   heroSubtitle: string;
   buttonText: string;
-  buttonUrl: string;
+  heroButtonUrl: string;
   heroImage: {
     node: {
       sourceUrl: string;
@@ -55,6 +55,7 @@ export async function fetchServicesData(): Promise<
     buttonLabel: string;
     serviceButtonUrl: string;
     displayOnHome: boolean;
+    serviceIcon: string;
   }[]
 > {
   try {

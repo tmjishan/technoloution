@@ -8,9 +8,10 @@ import { usePathname } from "next/navigation";
 
 const navLinks = [
   { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
   { name: "Services", href: "/services" },
-  { name: "Contact", href: "/contact" },
+  { name: "Blog", href: "/blog" },
+  { name: "About Us", href: "/about" },
+  { name: "Contact Us", href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -63,11 +64,11 @@ export default function Navbar() {
           <div className="w-[120px] h-auto">
             <Image
               src="/Technoloution-website-Logo-PNG-3.png"
-              width={0}
-              height={0}
-              sizes="100vw"
-              className="w-full h-auto"
-              alt="Site Logo"
+              alt="Logo"
+              width={200}
+              height={100}
+              className="h-[100%] w-auto"
+              priority
             />
           </div>
         </Link>
@@ -95,21 +96,18 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Menu */}
-      <div
-        className={`md:hidden px-4 pt-2 pb-4 space-y-3 transition-all duration-300 ${
-          open ? "block" : "hidden"
-        }`}
-        aria-hidden={!open}
-      >
-        <ul className="flex flex-col">{renderLinks(true)}</ul>
-        <Link
-          href="/contact"
-          onClick={() => setOpen(false)}
-          className="w-full inline-flex items-center justify-center font-extrabold bg-yellow-800 py-2 px-4 rounded-2xl cursor-pointer text-white text-base hover:bg-yellow-600 transition-colors"
-        >
-          Hire Us!
-        </Link>
-      </div>
+      {open && (
+        <div className="md:hidden px-4 pt-2 pb-4 space-y-3 transition-all duration-300">
+          <ul className="flex flex-col">{renderLinks(true)}</ul>
+          <Link
+            href="/contact"
+            onClick={() => setOpen(false)}
+            className="w-full inline-flex items-center justify-center font-extrabold bg-yellow-800 py-2 px-4 rounded-2xl cursor-pointer text-white text-base hover:bg-yellow-600 transition-colors"
+          >
+            Hire Us!
+          </Link>
+        </div>
+      )}
     </nav>
   );
 }

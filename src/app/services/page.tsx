@@ -1,42 +1,42 @@
-import CenterSlider from "@/components/ProductivitySlider";
-import { fetchServicesData } from "@/lib/graphql-client";
+import RevealText from "@/components/RevealText";
+import ServicePage from "@/components/serviceDetails";
+import WorkProcessSection from "@/components/workProcess";
 
-export default async function ServicePage() {
-  // Fetch data from the GraphQL endpoint
-  // This function should be defined in your lib/graphql-client.ts file
-  const data = await fetchServicesData();
-
-  if (!Array.isArray(data) || data.length === 0) {
-    return (
-      <p className="text-center text-yellow-700 py-10">No services found.</p>
-    );
-  }
-
-  const imageUrl = data.map((item: any) => {
-    const serviceIcon = item.serviceDetails?.serviceIcon?.node?.sourceUrl;
-    return {
-      url: serviceIcon || "",
-      title: item.serviceDetails?.serviceTitle || "Service Image",
-      description: item.serviceDetails?.shortDescription || "No description",
-    };
-  });
-
+export default function Page() {
   return (
     <>
-      <div className="text-center text-yellow-700">
-        <CenterSlider
-          slides={imageUrl.map((item) => {
-            return {
-              image: item.url,
-              title: item.title,
-              description: item.description,
-              buttonText: "Learn More",
-              buttonUrl: "#", // Replace with actual URL if needed
-            };
-          })}
-        />
-      </div>
-      <div>Hello SERVICE</div>
+      {/* Animated Section Title */}
+      <RevealText text="SERVICES" />
+
+      {/* Top Intro Section */}
+      <section className="px-4 sm:px-6 md:px-12 lg:px-20 pt-10 md:pt-16 pb-10 md:pb-20 bg-gray-900/60 rounded-b-3xl">
+        <div className="max-w-5xl mx-auto grid gap-6 text-center">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight text-white">
+            Web, Marketing & Creative Solutions That Elevate Your Brand
+          </h2>
+
+          <p className="text-base sm:text-lg md:text-xl text-gray-300 tracking-wide leading-relaxed">
+            At{" "}
+            <span className="font-semibold text-yellow-600">TechnoLotion</span>,
+            we help businesses grow faster with result-driven{" "}
+            <strong>Web Development</strong>, <strong>Digital Marketing</strong>
+            , <strong>Virtual Assistant</strong>, and{" "}
+            <strong>Graphics Design</strong> services. From building
+            high-performing websites to managing your brand’s online presence —
+            we’ve got you covered.
+          </p>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section className="mt-16 md:mt-24 px-4 sm:px-6 md:px-12 lg:px-20 pb-10 md:pb-20">
+        <ServicePage />
+      </section>
+
+      {/* Work Process Section */}
+      <section className="mt-16 md:mt-24">
+        <WorkProcessSection />
+      </section>
     </>
   );
 }
