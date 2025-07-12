@@ -26,7 +26,7 @@ export async function fetchHeroData(): Promise<{
   heroTitle: string;
   heroSubtitle: string;
   buttonText: string;
-  buttonUrl: string;
+  heroButtonUrl: string;
   heroImage: {
     node: {
       sourceUrl: string;

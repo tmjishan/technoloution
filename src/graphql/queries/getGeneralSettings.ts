@@ -16,7 +16,7 @@ export const GET_HERO_DATA = gql`
         heroTitle
         heroSubtitle
         buttonText
-        buttonUrl
+        heroButtonUrl
         heroImage {
           node {
             sourceUrl

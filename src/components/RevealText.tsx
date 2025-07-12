@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+
 type RevealTextProps = {
   text: string;
 };
+
 export default function RevealText({ text }: RevealTextProps) {
   const textRef = useRef<HTMLDivElement>(null);
 
@@ -28,12 +30,14 @@ export default function RevealText({ text }: RevealTextProps) {
   }, []);
 
   return (
-    <div className="h-fit flex justify-center items-center py-6 sm:py-10 md:py-14">
-      <div
-        ref={textRef}
-        className="reveal bg-yellow-800/60 text-center text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-widest uppercase font-raleway font-semibold px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 rounded-4xl shadow-md "
-      >
-        {text.toUpperCase()}
+    <div className="w-full bg-gray-900/60 py-6 sm:py-10 md:py-14">
+      <div className="max-w-6xl mx-auto flex justify-center items-center">
+        <div
+          ref={textRef}
+          className="reveal text-center text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-widest uppercase font-raleway font-semibold px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 text-white"
+        >
+          {text.toUpperCase()}
+        </div>
       </div>
     </div>
   );
