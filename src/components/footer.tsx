@@ -18,6 +18,7 @@ export default function Footer() {
                 width={200}
                 height={100}
                 className="h-[100%] w-auto"
+                priority
               />
               <span className="text-white font-extrabold text-xl select-none">
                 Techno Loution
