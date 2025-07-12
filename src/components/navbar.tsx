@@ -95,21 +95,18 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Menu */}
-      <div
-        className={`md:hidden px-4 pt-2 pb-4 space-y-3 transition-all duration-300 ${
-          open ? "block" : "hidden"
-        }`}
-        aria-hidden={!open}
-      >
-        <ul className="flex flex-col">{renderLinks(true)}</ul>
-        <Link
-          href="/contact"
-          onClick={() => setOpen(false)}
-          className="w-full inline-flex items-center justify-center font-extrabold bg-yellow-800 py-2 px-4 rounded-2xl cursor-pointer text-white text-base hover:bg-yellow-600 transition-colors"
-        >
-          Hire Us!
-        </Link>
-      </div>
+      {open && (
+        <div className="md:hidden px-4 pt-2 pb-4 space-y-3 transition-all duration-300">
+          <ul className="flex flex-col">{renderLinks(true)}</ul>
+          <Link
+            href="/contact"
+            onClick={() => setOpen(false)}
+            className="w-full inline-flex items-center justify-center font-extrabold bg-yellow-800 py-2 px-4 rounded-2xl cursor-pointer text-white text-base hover:bg-yellow-600 transition-colors"
+          >
+            Hire Us!
+          </Link>
+        </div>
+      )}
     </nav>
   );
 }
