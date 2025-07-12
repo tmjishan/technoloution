@@ -20,9 +20,6 @@ export default function Footer() {
                 className="h-[100%] w-auto"
                 priority
               />
-              <span className="text-white font-extrabold text-xl select-none">
-                Techno Loution
-              </span>
             </div>
           </Link>
 
