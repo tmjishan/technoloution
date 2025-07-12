@@ -1,11 +1,14 @@
+// components/client-layout.tsx
 "use client";
 
 import { ApolloProvider } from "@apollo/client";
 import client from "@/graphql/apollo-client";
-import Navbar from "../components/navbar";
+
+import Navbar from "@/components/navbar";
 import ScrollToTop from "@/components/ScrollToTop";
+import Footer from "@/components/footer";
+
 import type { ReactNode } from "react";
-import Footer from "./footer";
 
 export default function ClientLayout({ children }: { children: ReactNode }) {
   return (

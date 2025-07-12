@@ -49,3 +49,21 @@ export const GET_SERVICES = gql`
     }
   }
 `;
+
+export const TEAM_QUERY = gql`
+  query teamMate {
+    teamMembers {
+      nodes {
+        title
+        teamInfo {
+          jobTitle
+        }
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
+      }
+    }
+  }
+`;

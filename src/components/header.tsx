@@ -1,5 +1,13 @@
+export const revalidate = 60;
 import { fetchHeroData } from "@/lib/graphql-client";
 import { FaArrowDownLong } from "react-icons/fa6";
+import { Poppins } from "next/font/google";
+
+const poppins = Poppins({
+  weight: ["400", "600", "800"],
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export default async function Header() {
   const data = await fetchHeroData();
@@ -19,25 +27,19 @@ export default async function Header() {
     >
       {/* 🔥 Animated Gradient Title */}
       <h1
-        className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold leading-tight 
+        className={`${poppins.className} text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold leading-tight 
                    bg-gradient-to-r from-yellow-600 via-white to-yellow-900 
                    bg-clip-text text-transparent animate-gradient 
-                   tracking-wide drop-shadow-[0_4px_3px_rgba(0,0,0,0.4)]"
+                   tracking-wide drop-shadow-[0_4px_3px_rgba(0,0,0,0.4)]`}
       >
         {data.heroTitle}
       </h1>
 
       {/* ✨ Responsive Subtitle with Underline */}
-      <h2
-        className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-white max-w-xl mx-auto leading-relaxed 
-                   opacity-0 animate-fade-in delay-300 
-                   relative after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-16 sm:after:w-20 
-                   after:h-[2px] sm:after:h-[3px] 
-                   after:bg-yellow-800 after:rounded-full after:shadow-[0_0_10px_rgba(250,204,21,0.7)] 
-                   pb-4 sm:pb-6 md:pb-8"
-      >
-        {data.heroSubtitle}
+      <h2 className="text-xl lg:text-2xl font-semibold text-white max-w-xl mx-auto leading-relaxed">
+        {data?.heroSubtitle || "Loading..."}
       </h2>
+      <div className="w-16 sm:w-20 h-[2px] sm:h-[3px] bg-yellow-800 rounded-full shadow-[0_0_10px_rgba(250,204,21,0.7)] mt-2 mx-auto" />
 
       {/* 🎯 CTA Button */}
       <a

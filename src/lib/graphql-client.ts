@@ -3,6 +3,7 @@ import {
   GET_GENERAL_SETTINGS,
   GET_HERO_DATA,
   GET_SERVICES,
+  TEAM_QUERY,
 } from "@/graphql/queries/getGeneralSettings";
 
 export async function fetchGeneralData(): Promise<{
@@ -67,6 +68,32 @@ export async function fetchServicesData(): Promise<
     return response.data.service.nodes || [];
   } catch (error) {
     console.error("[GraphQL] fetchServicesData Error:", error);
+    return [];
+  }
+}
+
+interface TeamMemberRaw {
+  title: string;
+  teamInfo: {
+    jobTitle: string;
+  };
+  featuredImage: {
+    node: {
+      sourceUrl: string;
+    };
+  };
+}
+export async function fetchTeamData(): Promise<TeamMemberRaw[]> {
+  try {
+    const response = await client.query({ query: TEAM_QUERY });
+    if (!response || !response.data || !response.data.teamMembers?.nodes) {
+      console.warn("[GraphQL] fetchTeamData: No team data");
+      return [];
+    }
+
+    return response.data.teamMembers.nodes;
+  } catch (error) {
+    console.error("[GraphQL] fetchTeamData:", error);
     return [];
   }
 }
