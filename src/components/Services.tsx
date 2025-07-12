@@ -1,10 +1,10 @@
-export const revalidate = 60;
 import { fetchServicesData } from "@/lib/graphql-client";
+import { Service } from "@/type/type"; // ঠিক path দাও
 import Image from "next/image";
 import Link from "next/link";
 
 export default async function Services() {
-  const services = await fetchServicesData();
+  const services: Service[] = await fetchServicesData();
 
   if (!Array.isArray(services) || services.length === 0) {
     return (
@@ -24,7 +24,7 @@ export default async function Services() {
           designed to help your business grow efficiently and effectively.
         </h3>
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {services.map((service: any, index: number) => {
+          {services.map((service: Service, index: number) => {
             const {
               serviceTitle,
               shortDescription,
@@ -33,7 +33,7 @@ export default async function Services() {
               serviceIcon,
             } = service.serviceDetails || {};
 
-            const iconUrl = serviceIcon?.node?.sourceUrl;
+            const iconUrl = serviceIcon?.node?.sourceUrl || "";
 
             return (
               <div
@@ -44,7 +44,7 @@ export default async function Services() {
                   {iconUrl && (
                     <Image
                       src={iconUrl}
-                      alt={serviceTitle}
+                      alt={serviceTitle || "service icon"}
                       width={0}
                       height={0}
                       sizes="100vw"

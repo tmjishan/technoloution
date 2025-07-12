@@ -166,7 +166,7 @@ export default function ContactSection() {
           </form>
         </div>
 
-        {/* Right: Why We're a Good Fit */}
+        {/* Right: Why We&apos;re a Good Fit */}
         <div className="space-y-6">
           <h3 className="text-2xl font-bold text-white">
             What makes us a good fit?
@@ -183,11 +183,11 @@ export default function ContactSection() {
               You communicate regularly – we value transparency.
             </p>
             <p className="text-gray-300">
-              You're looking for a turnkey partner covering all: content, links,
-              paid ads.
+              You&apos;re looking for a turnkey partner covering all: content,
+              links, paid ads.
             </p>
             <p className="text-gray-300">
-              You're ready to invest $4,000+ monthly for aggressive ROI.
+              You&apos;re ready to invest $4,000+ monthly for aggressive ROI.
             </p>
           </div>
 
@@ -197,7 +197,7 @@ export default function ContactSection() {
 
           <div className="bg-gray-800 shadow-md rounded-xl p-5 space-y-2">
             <p className="text-gray-300">
-              Don't work with your direct competitors – loyalty matters.
+              Don&apos;t work with your direct competitors – loyalty matters.
             </p>
             <p className="text-gray-300">
               Focus on measurable ROI – we let numbers speak.
@@ -206,7 +206,7 @@ export default function ContactSection() {
               Provide SEO + Google Ads under one roof.
             </p>
             <p className="text-gray-300">
-              Always answer calls – we're available for you.
+              Always answer calls – we&apos;re available for you.
             </p>
           </div>
         </div>

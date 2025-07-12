@@ -69,5 +69,5 @@ const ServiceView: React.FC = React.memo(() => (
     </div>
   </section>
 ));
-
+ServiceView.displayName = "ServiceView";
 export default ServiceView;

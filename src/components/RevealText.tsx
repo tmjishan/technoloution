@@ -13,7 +13,6 @@ export default function RevealText({ text }: RevealTextProps) {
     const revealText = textRef.current;
     if (!revealText) return;
 
-    const duration = 0.8;
     const delay = 0.3;
     const text = revealText.textContent || "";
     const letters = text.split("");

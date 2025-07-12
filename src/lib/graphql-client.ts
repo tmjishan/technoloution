@@ -47,31 +47,6 @@ export async function fetchHeroData(): Promise<{
   }
 }
 
-export async function fetchServicesData(): Promise<
-  {
-    serviceTitle: string;
-    servicesSubtitle: string;
-    shortDescription: string;
-    fullDescription: string;
-    buttonLabel: string;
-    serviceButtonUrl: string;
-    displayOnHome: boolean;
-    serviceIcon: string;
-  }[]
-> {
-  try {
-    const response = await client.query({ query: GET_SERVICES });
-    if (!response || !response.data || !response.data.service) {
-      console.warn("[GraphQL] fetchServicesData: No service data");
-      return [];
-    }
-    return response.data.service.nodes || [];
-  } catch (error) {
-    console.error("[GraphQL] fetchServicesData Error:", error);
-    return [];
-  }
-}
-
 interface TeamMemberRaw {
   title: string;
   teamInfo: {
@@ -94,6 +69,24 @@ export async function fetchTeamData(): Promise<TeamMemberRaw[]> {
     return response.data.teamMembers.nodes;
   } catch (error) {
     console.error("[GraphQL] fetchTeamData:", error);
+    return [];
+  }
+}
+
+// -----------------------------------------------------------------------------------------------
+import { Service } from "../type/type"; // উপরের interface গুলো যেকোন একটা ফাইলে রাখতে পারো
+
+export async function fetchServicesData(): Promise<Service[]> {
+  try {
+    const response = await client.query({ query: GET_SERVICES });
+    if (!response || !response.data || !response.data.service) {
+      console.warn("[GraphQL] fetchServicesData: No service data");
+      return [];
+    }
+    // response.data.service.nodes: Service[]
+    return response.data.service.nodes || [];
+  } catch (error) {
+    console.error("[GraphQL] fetchServicesData Error:", error);
     return [];
   }
 }

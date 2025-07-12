@@ -1,10 +1,11 @@
 export const revalidate = 60;
 import { fetchServicesData } from "@/lib/graphql-client";
+import { Service } from "@/type/type";
 import parse from "html-react-parser";
 import Image from "next/image";
 
 export default async function ServicePage() {
-  const data = await fetchServicesData();
+  const data: Service[] = await fetchServicesData();
 
   if (!Array.isArray(data) || data.length === 0) {
     return (
@@ -14,7 +15,7 @@ export default async function ServicePage() {
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 md:p-6 max-w-7xl mx-auto">
-      {data.map((item: any, index: number) => {
+      {data.map((item, index) => {
         const details = item.serviceDetails;
 
         return (

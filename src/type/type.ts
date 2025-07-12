@@ -1,21 +1,12 @@
-export interface GeneralSettings {
-  title: string;
-  description: string;
+export interface ServiceIconNode {
+  sourceUrl: string;
 }
 
-export interface HeroData {
-  heroTitle: string;
-  heroSubtitle: string;
-  buttonText: string;
-  heroButtonUrl: string;
-  heroImage: {
-    node: {
-      sourceUrl: string;
-    };
-  };
+export interface ServiceIcon {
+  node: ServiceIconNode;
 }
 
-export interface ServiceData {
+export interface ServiceDetails {
   serviceTitle: string;
   servicesSubtitle: string;
   shortDescription: string;
@@ -23,21 +14,9 @@ export interface ServiceData {
   buttonLabel: string;
   serviceButtonUrl: string;
   displayOnHome: boolean;
-  serviceIcon: {
-    node: {
-      sourceUrl: string;
-    };
-  } | null; // null থাকতে পারে যদি কোনো icon না থাকে
+  serviceIcon?: ServiceIcon | null;
 }
 
-export interface TeamMember {
-  title: string;
-  teamInfo: {
-    jobTitle: string;
-  };
-  featuredImage: {
-    node: {
-      sourceUrl: string;
-    };
-  } | null; // Featured image না থাকলেও handle করতে null রাখা ভালো
+export interface Service {
+  serviceDetails: ServiceDetails;
 }
