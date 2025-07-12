@@ -14,10 +14,10 @@ export default function Footer() {
             <div className="flex items-center space-x-3 cursor-pointer">
               <Image
                 src="/Technoloution-website-Logo-PNG-3.png"
-                alt="Techno Loution Logo"
-                width={50}
-                height={50}
-                className="object-contain"
+                alt="Logo"
+                width={200}
+                height={100}
+                className="h-[100%] w-auto"
               />
               <span className="text-white font-extrabold text-xl select-none">
                 Techno Loution

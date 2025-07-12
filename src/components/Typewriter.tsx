@@ -38,14 +38,15 @@ export default function Typewriter() {
     };
   }, [charIndex, phraseIndex, isFocused]);
 
-  const fontSizeClasses = "text-xl sm:text-2xl md:text-3xl lg:text-5xl";
+  const fontSizeClasses =
+    "text-lg sm:text-xl md:text-3xl lg:text-5xl xl:text-6xl";
   const textShadowClass =
     "text-yellow-700 drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]";
 
   return (
-    <div className="w-full flex items-center justify-center px-2 sm:px-4">
-      <div className="relative w-full max-w-2xl flex items-center justify-center text-center font-mono font-semibold">
-        {/* Fake input look for blinking caret and space holding */}
+    <div className="w-full flex items-center justify-center px-2 sm:px-4 py-8 sm:py-12">
+      <div className="relative w-full max-w-3xl flex items-center justify-center text-center font-mono font-semibold">
+        {/* Fake input for caret control */}
         <span
           tabIndex={0}
           onFocus={() => setIsFocused(true)}
@@ -54,12 +55,12 @@ export default function Typewriter() {
             setText("");
             setCharIndex(0);
           }}
-          className={`w-full focus:outline-none bg-transparent caret-yellow-500 ${fontSizeClasses} text-transparent`}
+          className={`w-full bg-transparent focus:outline-none caret-yellow-500 text-transparent ${fontSizeClasses}`}
         >
           &nbsp;
         </span>
 
-        {/* Visible animated text */}
+        {/* Visible text overlay */}
         {!isFocused && (
           <span
             className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none animate-caret font-semibold ${fontSizeClasses} ${textShadowClass}`}

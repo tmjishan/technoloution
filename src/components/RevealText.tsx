@@ -31,7 +31,7 @@ export default function RevealText({ text }: RevealTextProps) {
     <div className="h-fit flex justify-center items-center py-6 sm:py-10 md:py-14">
       <div
         ref={textRef}
-        className="reveal bg-yellow-800/60 text-center text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-widest uppercase font-raleway font-semibold px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 rounded-4xl shadow-md"
+        className="reveal bg-yellow-800/60 text-center text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-widest uppercase font-raleway font-semibold px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 rounded-4xl shadow-md "
       >
         {text.toUpperCase()}
       </div>

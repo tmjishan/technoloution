@@ -64,11 +64,10 @@ export default function Navbar() {
           <div className="w-[120px] h-auto">
             <Image
               src="/Technoloution-website-Logo-PNG-3.png"
-              width={0}
-              height={0}
-              sizes="100vw"
-              className="w-full h-auto"
-              alt="Site Logo"
+              alt="Logo"
+              width={200}
+              height={100}
+              className="h-[100%] w-auto"
             />
           </div>
         </Link>

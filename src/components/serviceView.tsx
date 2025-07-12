@@ -44,17 +44,17 @@ const services: Service[] = [
 ];
 
 const ServiceView: React.FC = React.memo(() => (
-  <section className="w-full py-16 md:py-24 px-6">
-    <div className="max-w-7xl mx-auto grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+  <section className="w-full py-12 sm:py-16 md:py-24 px-4 sm:px-6">
+    <div className="max-w-7xl mx-auto grid gap-6 sm:gap-8 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 place-items-center">
       {services.map((service, index) => (
         <div
           key={index}
-          className={`group ${service.bg} text-white rounded-full w-40 h-40 sm:w-44 sm:h-44 md:w-48 md:h-48 mx-auto flex flex-col items-center justify-center shadow-md hover:shadow-xl transition-all duration-300 ease-in-out transform hover:scale-110 hover:-translate-y-1`}
+          className={`group ${service.bg} text-white rounded-full w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 lg:w-44 lg:h-44 flex flex-col items-center justify-center shadow-md hover:shadow-xl transition-all duration-300 ease-in-out transform hover:scale-105 hover:-translate-y-1`}
         >
-          <div className="text-4xl sm:text-5xl mb-2 transition-transform duration-700 ease-in-out group-hover:rotate-[360deg]">
+          <div className="text-3xl sm:text-4xl md:text-5xl mb-2 transition-transform duration-700 ease-in-out group-hover:rotate-[360deg]">
             {service.icon}
           </div>
-          <span className="text-center text-xs sm:text-sm font-semibold px-3 tracking-wide">
+          <span className="text-center text-xs sm:text-sm md:text-base font-semibold px-2 tracking-wide">
             {service.text}
           </span>
         </div>
