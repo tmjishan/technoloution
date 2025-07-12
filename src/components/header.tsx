@@ -44,6 +44,7 @@ export default async function Header() {
       {/* 🎯 CTA Button */}
       <a
         href={data.heroButtonUrl}
+        target="_blank"
         rel="noopener noreferrer"
         title={data.buttonText}
         aria-label={data.buttonText}
