@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
 import { FaFacebookF, FaTwitter, FaLinkedinIn } from "react-icons/fa";
@@ -7,52 +8,44 @@ export default function Footer() {
   return (
     <>
       <FormPopup />
-      <footer id="footer" className=" text-gray-300 py-10">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-8">
-          {/* Logo & Brand */}
-          <Link href="/" aria-label="Techno Loution Home">
-            <div className="flex items-center space-x-3 cursor-pointer">
-              <Image
-                src="/Technoloution-website-Logo-PNG-3.png"
-                alt="Logo"
-                width={200}
-                height={100}
-                className="h-[100%] w-auto"
-                priority
-              />
-            </div>
-          </Link>
+      <footer className="bg-gray-900/90 text-gray-300 py-12">
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 items-center">
+          {/* ✅ Logo & Branding */}
+          <div className="flex justify-center md:justify-start">
+            <Link href="/" aria-label="Techno Loution Home">
+              <div className="flex items-center space-x-3 cursor-pointer">
+                <Image
+                  src="/Technoloution-website-Logo-PNG-3.png"
+                  alt="Logo"
+                  width={160}
+                  height={80}
+                  className="h-auto w-auto"
+                  priority
+                />
+              </div>
+            </Link>
+          </div>
 
-          {/* Navigation Links */}
-          <nav aria-label="Footer Navigation" className="flex space-x-6">
-            <Link
-              href="/"
-              className="hover:text-yellow-500 transition-colors duration-200"
-            >
-              Home
-            </Link>
-            <Link
-              href="/about"
-              className="hover:text-yellow-500 transition-colors duration-200"
-            >
-              About
-            </Link>
-            <Link
-              href="/services"
-              className="hover:text-yellow-500 transition-colors duration-200"
-            >
-              Services
-            </Link>
-            <Link
-              href="/contact"
-              className="hover:text-yellow-500 transition-colors duration-200"
-            >
-              Contact
-            </Link>
+          {/* ✅ Footer Nav Links */}
+          <nav className="flex justify-center space-x-6 text-sm sm:text-base font-medium">
+            {[
+              { href: "/", label: "Home" },
+              { href: "/about", label: "About" },
+              { href: "/services", label: "Services" },
+              { href: "/contact", label: "Contact" },
+            ].map(({ href, label }) => (
+              <Link
+                key={label}
+                href={href}
+                className="text-gray-400 hover:text-yellow-500 transition-colors duration-200"
+              >
+                {label}
+              </Link>
+            ))}
           </nav>
 
-          {/* Social Icons */}
-          <div className="flex space-x-6 text-gray-400">
+          {/* ✅ Social Links */}
+          <div className="flex justify-center md:justify-end space-x-6 text-gray-400">
             <a
               href="https://facebook.com/yourprofile"
               target="_blank"
@@ -83,9 +76,11 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Copyright */}
-        <div className="border-t border-gray-800 mt-8 pt-6 text-center text-sm text-gray-500 select-none">
-          &copy; {new Date().getFullYear()} Techno Loution. All rights reserved.
+        {/* ✅ Copyright */}
+        <div className="border-t border-gray-800 mt-10 pt-6 text-center text-sm text-gray-500">
+          &copy; {new Date().getFullYear()}{" "}
+          <span className="text-white font-semibold">TechnoLoution</span>. All
+          rights reserved.
         </div>
       </footer>
     </>

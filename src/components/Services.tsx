@@ -12,6 +12,18 @@ export default async function Services() {
     );
   }
 
+  const filteredServices = services.filter(
+    (s) => s.serviceDetails?.displayOnHome === true
+  );
+
+  if (filteredServices.length === 0) {
+    return (
+      <p className="text-center text-yellow-400 py-10">
+        No home-visible services found.
+      </p>
+    );
+  }
+
   return (
     <section className="py-16 bg-gray-900/80">
       <div className="max-w-7xl mx-auto px-6">
@@ -23,8 +35,9 @@ export default async function Services() {
           Workflow Automation, Digital Marketing, and Virtual Assistance — all
           designed to help your business grow efficiently and effectively.
         </h3>
+
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {services.map((service: Service, index: number) => {
+          {filteredServices.map((service: Service, index: number) => {
             const {
               serviceTitle,
               shortDescription,
@@ -77,6 +90,17 @@ export default async function Services() {
             );
           })}
         </div>
+
+        {filteredServices.length >= 3 && (
+          <div className="text-center">
+            <Link
+              href="/services"
+              className="hidden md:inline-flex items-center justify-center font-extrabold bg-yellow-800 py-2 px-4 sm:px-5 rounded-2xl cursor-pointer text-white text-base sm:text-lg hover:bg-yellow-600 transition-colors duration-200  my-8"
+            >
+              View All Services
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );

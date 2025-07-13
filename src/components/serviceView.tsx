@@ -12,62 +12,66 @@ import React from "react";
 type Service = {
   text: string;
   icon: React.ReactNode;
-  bg: string;
 };
 
 const services: Service[] = [
-  {
-    text: "Web Development",
-    icon: <SiWeb3Dotjs />,
-    bg: "bg-yellow-700/50 hover:bg-yellow-700/80",
-  },
-  {
-    text: "Digital Marketing",
-    icon: <SiGooglemarketingplatform />,
-    bg: "bg-yellow-600/50 hover:bg-yellow-600/80",
-  },
-  {
-    text: "Graphic Design",
-    icon: <SiTaichigraphics />,
-    bg: "bg-yellow-500/50 hover:bg-yellow-500/80",
-  },
-  {
-    text: "Virtual Assistant",
-    icon: <FcAssistant />,
-    bg: "bg-yellow-400/50 hover:bg-yellow-400/80",
-  },
-  {
-    text: "Automation",
-    icon: <TbAutomation />,
-    bg: "bg-yellow-300/50 hover:bg-yellow-300/80",
-  },
+  { text: "Web Development", icon: <SiWeb3Dotjs /> },
+  { text: "Digital Marketing", icon: <SiGooglemarketingplatform /> },
+  { text: "Graphic Design", icon: <SiTaichigraphics /> },
+  { text: "Virtual Assistant", icon: <FcAssistant /> },
+  { text: "Automation", icon: <TbAutomation /> },
 ];
 
 const ServiceView: React.FC = React.memo(() => (
-  <section className="w-full py-8 sm:py-10 md:py-20 px-4 sm:px-6">
-    <div
-      className="max-w-7xl mx-auto grid grid-flow-dense gap-4 sm:gap-6 md:gap-8
-                 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 auto-rows-fr"
+  <section className="relative w-full isolate overflow-hidden py-24 px-6 sm:px-8">
+    {/* 🔁 Background Video */}
+    <video
+      autoPlay
+      muted
+      loop
+      playsInline
+      className="absolute inset-0 w-full h-full object-cover z-0 opacity-30 blur-[2px]"
     >
+      <source src="/agency-bg.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+
+    {/* 🌫️ Overlays */}
+    <div className="absolute inset-0 z-0 bg-black/80 mix-blend-overlay" />
+    <div className="absolute -top-16 -left-20 w-[300px] h-[300px] rounded-full bg-yellow-700/10 blur-[120px] z-0" />
+    <div className="absolute bottom-0 -right-16 w-[250px] h-[250px] rounded-full bg-yellow-600/10 blur-[100px] z-0" />
+
+    {/* Title */}
+    <div className="relative z-10 max-w-4xl mx-auto text-center mb-16">
+      <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-wide leading-tight drop-shadow-md">
+        Empowering Your Digital Presence
+      </h2>
+    </div>
+
+    {/* 💠 Service Cards */}
+    <div className="relative z-10 grid gap-10 sm:grid-cols-2 lg:grid-cols-3 place-items-center">
       {services.map((service, index) => (
         <div
           key={index}
-          className={`group ${service.bg} text-white rounded-full w-full aspect-square 
-                      flex flex-col items-center justify-center 
-                      shadow-md hover:shadow-xl 
-                      transition-all duration-300 ease-in-out 
-                      transform hover:scale-105 hover:-translate-y-1`}
+          className="relative bg-white/5 border border-yellow-700/20 
+            backdrop-blur-xl rounded-3xl p-8 pt-16 w-full max-w-xs text-center 
+            shadow-md hover:shadow-yellow-600/30 transition-all duration-300 group"
         >
-          <div className="text-3xl sm:text-4xl md:text-5xl mb-2 transition-transform duration-700 ease-in-out group-hover:rotate-[360deg]">
-            {service.icon}
+          {/* Diamond Icon Container */}
+          <div className="absolute -top-10 left-1/2 -translate-x-1/2 transform rotate-45">
+            <div className="bg-yellow-600 text-white p-5 w-20 h-20 rounded-sm shadow-md flex items-center justify-center rotate-[-45deg] group-hover:scale-110 transition-transform duration-300 text-3xl sm:text-4xl">
+              {service.icon}
+            </div>
           </div>
-          <span className="text-center text-xs sm:text-sm md:text-base font-semibold px-2 tracking-wide">
+
+          <h3 className="text-white text-xl font-bold tracking-wide mt-6">
             {service.text}
-          </span>
+          </h3>
         </div>
       ))}
     </div>
   </section>
 ));
+
 ServiceView.displayName = "ServiceView";
 export default ServiceView;

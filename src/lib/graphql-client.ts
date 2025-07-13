@@ -4,7 +4,7 @@ import {
   GET_HERO_DATA,
   GET_SERVICES,
   TEAM_QUERY,
-} from "@/graphql/queries/getGeneralSettings";
+} from "@/graphql/queries/api";
 
 export async function fetchGeneralData(): Promise<{
   title: string;

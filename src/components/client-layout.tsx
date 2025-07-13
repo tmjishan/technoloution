@@ -13,7 +13,7 @@ export default function ClientLayout({ children }: { children: ReactNode }) {
   return (
     <ApolloProvider client={client}>
       <Navbar />
-      <main className="p-4 min-h-screen">{children}</main>
+      <main className="min-h-screen">{children}</main>
       <ScrollToTop />
       <Footer />
     </ApolloProvider>
