@@ -1,7 +1,12 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { FaFacebookF, FaTwitter, FaLinkedinIn } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaTwitter,
+  FaLinkedinIn,
+  FaInstagram,
+} from "react-icons/fa";
 import FormPopup from "./FormPopup";
 
 export default function Footer() {
@@ -47,7 +52,7 @@ export default function Footer() {
           {/* ✅ Social Links */}
           <div className="flex justify-center md:justify-end space-x-6 text-gray-400">
             <a
-              href="https://facebook.com/yourprofile"
+              href="https://www.facebook.com/share/1CGbBonxbV/?mibextid=wwXIfr"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook"
@@ -56,7 +61,7 @@ export default function Footer() {
               <FaFacebookF size={20} />
             </a>
             <a
-              href="https://twitter.com/yourprofile"
+              href="https://x.com/technoloution_?s=11"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Twitter"
@@ -65,10 +70,19 @@ export default function Footer() {
               <FaTwitter size={20} />
             </a>
             <a
-              href="https://linkedin.com/in/yourprofile"
+              href="https://www.instagram.com/technoloution_?igsh=dWY1ank1dzUyMjBn"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="LinkedIn"
+              aria-label="instagram"
+              className="hover:text-yellow-500 transition-colors duration-200"
+            >
+              <FaInstagram size={20} />
+            </a>
+            <a
+              href="/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Linkedin"
               className="hover:text-yellow-500 transition-colors duration-200"
             >
               <FaLinkedinIn size={20} />
