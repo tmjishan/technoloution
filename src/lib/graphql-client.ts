@@ -74,7 +74,7 @@ export async function fetchTeamData(): Promise<TeamMemberRaw[]> {
 }
 
 // -----------------------------------------------------------------------------------------------
-import { Service } from "../type/type"; // উপরের interface গুলো যেকোন একটা ফাইলে রাখতে পারো
+import { Service } from "../type/type";
 
 export async function fetchServicesData(): Promise<Service[]> {
   try {

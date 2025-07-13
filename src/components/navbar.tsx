@@ -66,7 +66,7 @@ export default function Navbar() {
               src="/Technoloution-website-Logo-PNG-3.png"
               alt="Logo"
               width={200}
-              height={100}
+              height={300}
               className="h-[100%] w-auto"
               priority
             />
@@ -76,13 +76,13 @@ export default function Navbar() {
         {/* Desktop Links */}
         <ul className="hidden md:flex space-x-6">{renderLinks()}</ul>
 
-        {/* CTA Desktop Button */}
+        {/* CTA Desktop Button
         <Link
           href="/contact"
           className="hidden md:inline-flex items-center justify-center font-extrabold bg-yellow-800 py-2 px-4 sm:px-5 rounded-2xl cursor-pointer text-white text-base sm:text-lg hover:bg-yellow-600 transition-colors duration-200"
         >
           Hire Us!
-        </Link>
+        </Link> */}
 
         {/* Mobile Toggle */}
         <button
@@ -99,13 +99,13 @@ export default function Navbar() {
       {open && (
         <div className="md:hidden px-4 pt-2 pb-4 space-y-3 transition-all duration-300">
           <ul className="flex flex-col">{renderLinks(true)}</ul>
-          <Link
+          {/* <Link
             href="/contact"
             onClick={() => setOpen(false)}
             className="w-full inline-flex items-center justify-center font-extrabold bg-yellow-800 py-2 px-4 rounded-2xl cursor-pointer text-white text-base hover:bg-yellow-600 transition-colors"
           >
             Hire Us!
-          </Link>
+          </Link> */}
         </div>
       )}
     </nav>

@@ -1,4 +1,3 @@
-export const revalidate = 60;
 import { fetchServicesData } from "@/lib/graphql-client";
 import { Service } from "@/type/type";
 import parse from "html-react-parser";
@@ -21,7 +20,7 @@ export default async function ServicePage() {
         return (
           <div
             key={index}
-            className="bg-gray-800/70 p-6 rounded-lg shadow-md flex flex-col gap-4"
+            className="bg-gray-800/70 p-6 rounded-lg shadow-md flex flex-col gap-4 transition hover:scale-[1.02]"
           >
             <h2 className="text-3xl font-semibold text-white">
               {details.serviceTitle}
@@ -35,7 +34,7 @@ export default async function ServicePage() {
               <div className="relative w-full h-40 overflow-hidden rounded-md">
                 <Image
                   src={details.serviceIcon.node.sourceUrl}
-                  alt="Service Icon"
+                  alt={details.serviceTitle || "Service Icon"}
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 33vw"
@@ -43,7 +42,7 @@ export default async function ServicePage() {
               </div>
             )}
 
-            <div className="text-gray-300 text-md leading-relaxed space-x-16 py-5">
+            <div className="text-gray-300 text-md leading-relaxed  py-5">
               {parse(details.shortDescription)}
             </div>
 
@@ -65,3 +64,4 @@ export default async function ServicePage() {
     </div>
   );
 }
+export const revalidate = 60;

@@ -1,4 +1,3 @@
-export const revalidate = 60;
 import RevealText from "@/components/RevealText";
 import ServicePage from "@/components/serviceDetails";
 import WorkProcessSection from "@/components/workProcess";

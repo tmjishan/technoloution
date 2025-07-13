@@ -32,9 +32,6 @@ export const metadata = {
     "Grow your business with custom web development, workflow automation, and digital support services from Techno Loution.",
 };
 
-// ✅ ISR for all pages under layout
-export const revalidate = 60;
-
 // ✅ Root Layout Component
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (

@@ -1,3 +1,4 @@
+"use clients";
 import Typewriter from "./Typewriter";
 
 export default function Tagline() {

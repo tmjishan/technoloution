@@ -13,8 +13,6 @@ interface TeamMember {
   };
 }
 
-export const revalidate = 60;
-
 export default async function TeamSection() {
   const data: TeamMember[] = (await fetchTeamData()) || [];
   const teamMembers = data;
@@ -63,3 +61,4 @@ export default async function TeamSection() {
     </section>
   );
 }
+export const revalidate = 60;

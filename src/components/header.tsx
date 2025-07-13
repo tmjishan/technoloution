@@ -1,17 +1,22 @@
+// ✅ Set revalidation interval (ISR)
 export const revalidate = 60;
+
 import { fetchHeroData } from "@/lib/graphql-client";
 import { FaArrowDownLong } from "react-icons/fa6";
 import { Poppins } from "next/font/google";
 
+// ✅ Load Google Font (Poppins)
 const poppins = Poppins({
   weight: ["400", "600", "800"],
   subsets: ["latin"],
   display: "swap",
 });
 
+// ✅ Async Server Component with ISR
 export default async function Header() {
   const data = await fetchHeroData();
 
+  // ✅ Optional: Fallback error UI
   if (!data) {
     return (
       <header className="text-center py-10 px-4">
