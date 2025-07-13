@@ -1,5 +1,4 @@
 // ✅ Set revalidation interval (ISR)
-export const revalidate = 60;
 import { fetchHeroData } from "@/lib/graphql-client";
 import { FaArrowDownLong } from "react-icons/fa6";
 import { Poppins } from "next/font/google";

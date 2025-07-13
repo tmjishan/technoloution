@@ -1,4 +1,3 @@
-export const revalidate = 60;
 import Image from "next/image";
 import { fetchTeamData } from "@/lib/graphql-client";
 
