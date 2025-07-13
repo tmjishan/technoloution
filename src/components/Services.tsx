@@ -1,3 +1,4 @@
+export const revalidate = 60;
 import { fetchServicesData } from "@/lib/graphql-client";
 import { Service } from "@/type/type";
 import Image from "next/image";
@@ -81,4 +82,3 @@ export default async function Services() {
     </section>
   );
 }
-export const revalidate = 60;

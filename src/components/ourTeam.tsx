@@ -1,3 +1,4 @@
+export const revalidate = 60;
 import Image from "next/image";
 import { fetchTeamData } from "@/lib/graphql-client";
 
@@ -61,4 +62,3 @@ export default async function TeamSection() {
     </section>
   );
 }
-export const revalidate = 60;

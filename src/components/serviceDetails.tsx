@@ -1,3 +1,4 @@
+export const revalidate = 60;
 import { fetchServicesData } from "@/lib/graphql-client";
 import { Service } from "@/type/type";
 import parse from "html-react-parser";
@@ -64,4 +65,3 @@ export default async function ServicePage() {
     </div>
   );
 }
-export const revalidate = 60;
