@@ -1,3 +1,4 @@
+export const revalidate = 60;
 // app/layout.tsx
 import "./globals.css";
 import type { ReactNode } from "react";
