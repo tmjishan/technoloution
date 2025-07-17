@@ -14,7 +14,6 @@ const poppins = Poppins({
 export default async function Header() {
   const data = await fetchHeroData();
 
-  // ✅ Optional: Fallback error UI
   if (!data) {
     return (
       <header className="text-center py-10 px-4">
@@ -35,29 +34,27 @@ export default async function Header() {
                    bg-clip-text text-transparent animate-gradient 
                    tracking-wide drop-shadow-[0_4px_3px_rgba(0,0,0,0.4)]`}
       >
-        {data.heroTitle}
+        {data.heroHeading}
       </h1>
 
-      {/* ✨ Responsive Subtitle with Underline */}
+      {/* ✨ Subtitle */}
       <h2 className="text-xl lg:text-2xl font-semibold text-white max-w-xl mx-auto leading-relaxed">
-        {data?.heroSubtitle || "Loading..."}
+        {data.heroSubheading}
       </h2>
       <div className="w-16 sm:w-20 h-[2px] sm:h-[3px] bg-yellow-800 rounded-full shadow-[0_0_10px_rgba(250,204,21,0.7)] mt-2 mx-auto" />
 
-      {/* 🎯 CTA Button */}
+      {/* 🎯 CTA Button (optional, no URL yet) */}
       <a
-        href={data.heroButtonUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        title={data.buttonText}
-        aria-label={data.buttonText}
+        href="#"
+        title={data.heroCtaButtonText}
+        aria-label={data.heroCtaButtonText}
         className="inline-flex items-center justify-center gap-2 font-bold 
                    bg-yellow-900 text-white py-3 px-5 sm:px-7 md:px-8 text-sm sm:text-base md:text-lg 
                    rounded-full hover:bg-yellow-700 hover:scale-105 transition-all duration-300 
                    animate-bounce-slow shadow-md hover:shadow-yellow-500/40"
       >
         <FaArrowDownLong className="animate-pulse text-base sm:text-lg" />
-        {data.buttonText}
+        {data.heroCtaButtonText}
       </a>
     </header>
   );

@@ -20,3 +20,9 @@ export interface ServiceDetails {
 export interface Service {
   serviceDetails: ServiceDetails;
 }
+
+export interface HeroData {
+  heroHeading: string;
+  heroSubheading: string;
+  heroCtaButtonText: string;
+}

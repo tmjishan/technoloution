@@ -10,18 +10,13 @@ export const GET_GENERAL_SETTINGS = gql`
 `;
 
 export const GET_HERO_DATA = gql`
-  query GetHeroContent {
-    pageBy(uri: "next-home") {
-      homePageContent {
-        heroTitle
-        heroSubtitle
-        buttonText
-        heroButtonUrl
-        heroImage {
-          node {
-            sourceUrl
-          }
-        }
+  query GetHomePageHero {
+    page(id: "home", idType: URI) {
+      title
+      homeFields {
+        heroHeading
+        heroSubheading
+        heroCtaButtonText
       }
     }
   }

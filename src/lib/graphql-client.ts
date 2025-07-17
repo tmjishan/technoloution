@@ -23,30 +23,6 @@ export async function fetchGeneralData(): Promise<{
   }
 }
 
-export async function fetchHeroData(): Promise<{
-  heroTitle: string;
-  heroSubtitle: string;
-  buttonText: string;
-  heroButtonUrl: string;
-  heroImage: {
-    node: {
-      sourceUrl: string;
-    };
-  };
-} | null> {
-  try {
-    const response = await client.query({ query: GET_HERO_DATA });
-    if (!response || !response.data || !response.data.pageBy) {
-      console.warn("[GraphQL] fetchHeroData: No pageBy data");
-      return null;
-    }
-    return response.data.pageBy.homePageContent ?? null;
-  } catch (error) {
-    console.error("[GraphQL] fetchHeroData Error:", error);
-    return null;
-  }
-}
-
 interface TeamMemberRaw {
   title: string;
   teamInfo: {
@@ -74,7 +50,35 @@ export async function fetchTeamData(): Promise<TeamMemberRaw[]> {
 }
 
 // -----------------------------------------------------------------------------------------------
-import { Service } from "../type/type";
+import { Service, HeroData } from "../type/type";
+
+// HERO DATA
+
+export async function fetchHeroData(): Promise<HeroData | null> {
+  try {
+    const response = await client.query({
+      query: GET_HERO_DATA,
+    });
+
+    if (!response || !response.data || !response.data.page) {
+      console.warn("[GraphQL] fetchHeroData: No page data");
+      return null;
+    }
+
+    const data = response.data.page.homeFields;
+
+    return {
+      heroHeading: data.heroHeading,
+      heroSubheading: data.heroSubheading,
+      heroCtaButtonText: data.heroCtaButtonText,
+    };
+  } catch (error) {
+    console.error("[GraphQL] fetchHeroData Error:", error);
+    return null;
+  }
+}
+
+// SERVICES
 
 export async function fetchServicesData(): Promise<Service[]> {
   try {
