@@ -13,7 +13,7 @@ export const GET_HERO_DATA = gql`
   query GetHomePageHero {
     page(id: "home", idType: URI) {
       title
-      homeFields {
+      homePageFields {
         heroHeading
         heroSubheading
         heroCtaButtonText

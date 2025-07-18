@@ -65,7 +65,7 @@ export async function fetchHeroData(): Promise<HeroData | null> {
       return null;
     }
 
-    const data = response.data.page.homeFields;
+    const data = response.data.page.homePageFields;
 
     return {
       heroHeading: data.heroHeading,
