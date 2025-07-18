@@ -17,6 +17,7 @@ export const GET_HERO_DATA = gql`
         heroHeading
         heroSubheading
         heroCtaButtonText
+        heroButtonUrl
       }
     }
   }

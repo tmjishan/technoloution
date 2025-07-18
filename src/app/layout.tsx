@@ -1,4 +1,3 @@
-export const revalidate = 60;
 import "./globals.css";
 import type { ReactNode } from "react";
 import ClientLayout from "../components/client-layout";

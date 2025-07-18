@@ -25,4 +25,5 @@ export interface HeroData {
   heroHeading: string;
   heroSubheading: string;
   heroCtaButtonText: string;
+  heroButtonUrl: string;
 }

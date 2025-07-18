@@ -1,4 +1,3 @@
-export const revalidate = 60;
 import Header from "@/components/header";
 import Services from "@/components/Services";
 import ServiceView from "@/components/serviceView";

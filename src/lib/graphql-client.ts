@@ -71,6 +71,7 @@ export async function fetchHeroData(): Promise<HeroData | null> {
       heroHeading: data.heroHeading,
       heroSubheading: data.heroSubheading,
       heroCtaButtonText: data.heroCtaButtonText,
+      heroButtonUrl: data.heroButtonUrl,
     };
   } catch (error) {
     console.error("[GraphQL] fetchHeroData Error:", error);
