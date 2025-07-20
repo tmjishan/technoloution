@@ -1,20 +1,9 @@
 import Image from "next/image";
 import { fetchTeamData } from "@/lib/graphql-client";
-
-interface TeamMember {
-  title: string;
-  featuredImage?: {
-    node: {
-      sourceUrl: string;
-    };
-  };
-  teamInfo?: {
-    jobTitle?: string;
-  };
-}
+import { TeamMemberRaw } from "@/type/type";
 
 export default async function TeamSection() {
-  const data: TeamMember[] = (await fetchTeamData()) || [];
+  const data: TeamMemberRaw[] = (await fetchTeamData()) || [];
   const teamMembers = data;
 
   return (
@@ -31,7 +20,7 @@ export default async function TeamSection() {
       </div>
 
       <div className="mt-14 grid gap-6 sm:gap-8 md:gap-10 sm:grid-cols-2 lg:grid-cols-3">
-        {teamMembers.map((member: TeamMember, idx: number) => (
+        {teamMembers.map((member: TeamMemberRaw, idx: number) => (
           <div
             key={idx}
             className="group bg-gray-800/40 hover:bg-gray-800/70 backdrop-blur-md border border-yellow-800/10 shadow-md hover:shadow-yellow-600/30 text-white rounded-2xl p-6 flex flex-col items-center gap-4 transition-all duration-300 ease-in-out hover:animate-zoom-bounce"
@@ -53,7 +42,7 @@ export default async function TeamSection() {
               {member.title}
             </div>
             <p className="text-gray-100 text-sm sm:text-base text-center">
-              {member.teamInfo?.jobTitle || ""}
+              {member?.teamMemberInfo?.jobTitle || "HHHH"}
             </p>
           </div>
         ))}
