@@ -49,3 +49,17 @@ export interface ServicesData {
     nodes: ServiceNode[];
   };
 }
+
+//Team Data
+
+export interface TeamMemberRaw {
+  title: string;
+  teamMemberInfo: {
+    jobTitle: string;
+  };
+  featuredImage: {
+    node: {
+      sourceUrl: string;
+    };
+  };
+}

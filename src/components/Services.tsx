@@ -38,7 +38,7 @@ export default async function Services() {
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {filteredServices.map((service, index) => {
-            const { featuredImage, title, slug, uri, servicesacf } = service;
+            const { featuredImage, title, uri, servicesacf } = service;
 
             const seoTitle = servicesacf?.seoTitle || title;
             const shortDescription =

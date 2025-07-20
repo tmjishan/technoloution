@@ -1,5 +1,4 @@
 import { fetchServicesData } from "@/lib/graphql-client";
-import { ServiceNode } from "@/type/type";
 import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
