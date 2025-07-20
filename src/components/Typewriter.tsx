@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 const phrases = [
   "We build different.",
   "No shortcuts. Just results.",
-  "Built to win.",
+  "Built to win.&",
 ];
 
 export default function Typewriter() {
