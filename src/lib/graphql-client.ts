@@ -5,6 +5,12 @@ import {
   GET_SERVICES,
   TEAM_QUERY,
 } from "@/graphql/queries/api";
+import {
+  ServicesData,
+  ServiceNode,
+  HeroData,
+  TeamMemberRaw,
+} from "../type/type";
 
 export async function fetchGeneralData(): Promise<{
   title: string;
@@ -23,34 +29,7 @@ export async function fetchGeneralData(): Promise<{
   }
 }
 
-interface TeamMemberRaw {
-  title: string;
-  teamInfo: {
-    jobTitle: string;
-  };
-  featuredImage: {
-    node: {
-      sourceUrl: string;
-    };
-  };
-}
-export async function fetchTeamData(): Promise<TeamMemberRaw[]> {
-  try {
-    const response = await client.query({ query: TEAM_QUERY });
-    if (!response || !response.data || !response.data.teamMembers?.nodes) {
-      console.warn("[GraphQL] fetchTeamData: No team data");
-      return [];
-    }
-
-    return response.data.teamMembers.nodes;
-  } catch (error) {
-    console.error("[GraphQL] fetchTeamData:", error);
-    return [];
-  }
-}
-
 // -----------------------------------------------------------------------------------------------
-import { Service, HeroData } from "../type/type";
 
 // HERO DATA
 
@@ -80,18 +59,39 @@ export async function fetchHeroData(): Promise<HeroData | null> {
 }
 
 // SERVICES
-
-export async function fetchServicesData(): Promise<Service[]> {
+export async function fetchServicesData(): Promise<ServiceNode[]> {
   try {
-    const response = await client.query({ query: GET_SERVICES });
-    if (!response || !response.data || !response.data.service) {
+    const response = await client.query<{ services: ServicesData["services"] }>(
+      {
+        query: GET_SERVICES,
+      }
+    );
+
+    if (!response?.data?.services?.nodes) {
       console.warn("[GraphQL] fetchServicesData: No service data");
       return [];
     }
-    // response.data.service.nodes: Service[]
-    return response.data.service.nodes || [];
+
+    return response.data.services.nodes;
   } catch (error) {
     console.error("[GraphQL] fetchServicesData Error:", error);
+    return [];
+  }
+}
+
+// Team Data
+
+export async function fetchTeamData(): Promise<TeamMemberRaw[]> {
+  try {
+    const response = await client.query({ query: TEAM_QUERY });
+    if (!response || !response.data || !response.data.teamMembers?.nodes) {
+      console.warn("[GraphQL] fetchTeamData: No team data");
+      return [];
+    }
+
+    return response.data.teamMembers.nodes;
+  } catch (error) {
+    console.error("[GraphQL] fetchTeamData:", error);
     return [];
   }
 }

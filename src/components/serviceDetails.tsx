@@ -1,10 +1,11 @@
 import { fetchServicesData } from "@/lib/graphql-client";
-import { Service } from "@/type/type";
+import { ServiceNode } from "@/type/type";
 import parse from "html-react-parser";
 import Image from "next/image";
+import Link from "next/link";
 
 export default async function ServicePage() {
-  const data: Service[] = await fetchServicesData();
+  const data: ServiceNode[] = await fetchServicesData();
 
   if (!Array.isArray(data) || data.length === 0) {
     return (
@@ -15,49 +16,52 @@ export default async function ServicePage() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 md:p-6 max-w-7xl mx-auto">
       {data.map((item, index) => {
-        const details = item.serviceDetails;
+        const details = item.servicesacf;
+
+        if (!details) return null;
+
+        const imageUrl =
+          item.featuredImage?.node?.sourceUrl ||
+          details.serviceIcon?.node?.sourceUrl ||
+          "/fallback-image.jpg"; // fallback image
+
+        const altText = details.seoTitle || item.title || "Service Image";
 
         return (
           <div
             key={index}
             className="bg-gray-800/70 p-6 rounded-lg shadow-md flex flex-col gap-4 transition hover:scale-[1.02]"
           >
-            <h2 className="text-3xl font-semibold text-white">
-              {details.serviceTitle}
-            </h2>
-
-            <h5 className="text-gray-400 text-xl">
-              {details.servicesSubtitle}
-            </h5>
-
-            {details.serviceIcon?.node?.sourceUrl && (
-              <div className="relative w-full h-40 overflow-hidden rounded-md">
-                <Image
-                  src={details.serviceIcon.node.sourceUrl}
-                  alt={details.serviceTitle || "Service Icon"}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                />
-              </div>
-            )}
-
-            <div className="text-gray-300 text-md leading-relaxed  py-5">
-              {parse(details.shortDescription)}
+            {/* Image */}
+            <div className="relative w-full h-40 overflow-hidden rounded-md">
+              <Image
+                src={imageUrl}
+                alt={altText}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 33vw"
+              />
             </div>
 
-            {details.serviceButtonUrl && (
-              <div className="mt-auto">
-                <a
-                  href={details.serviceButtonUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block bg-yellow-800 hover:bg-yellow-600 text-white px-4 py-2 rounded transition"
-                >
-                  {details.buttonLabel}
-                </a>
-              </div>
-            )}
+            {/* Title */}
+            <h2 className="text-3xl font-semibold text-white">
+              {details.seoTitle || item.title || "Untitled Service"}
+            </h2>
+
+            {/* Short Description */}
+            <div className="text-gray-300 text-md leading-relaxed py-5">
+              {details.shortDescription
+                ? parse(details.shortDescription)
+                : "No description available."}
+            </div>
+
+            <Link
+              href={item.uri}
+              rel="noopener noreferrer"
+              className="bg-yellow-900 px-6 py-2 rounded-2xl inline-block text-center text-white hover:bg-yellow-700 transition"
+            >
+              Details
+            </Link>
           </div>
         );
       })}

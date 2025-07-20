@@ -1,10 +1,10 @@
 import { fetchServicesData } from "@/lib/graphql-client";
-import { Service } from "@/type/type";
+import { ServiceNode } from "@/type/type";
 import Image from "next/image";
 import Link from "next/link";
 
 export default async function Services() {
-  const services: Service[] = await fetchServicesData();
+  const services: ServiceNode[] = await fetchServicesData();
 
   if (!Array.isArray(services) || services.length === 0) {
     return (
@@ -13,7 +13,7 @@ export default async function Services() {
   }
 
   const filteredServices = services.filter(
-    (s) => s.serviceDetails?.displayOnHome === true
+    (s) => s.servicesacf?.displayHome === true
   );
 
   if (filteredServices.length === 0) {
@@ -37,16 +37,16 @@ export default async function Services() {
         </h3>
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {filteredServices.map((service: Service, index: number) => {
-            const {
-              serviceTitle,
-              shortDescription,
-              buttonLabel,
-              serviceButtonUrl,
-              serviceIcon,
-            } = service.serviceDetails || {};
+          {filteredServices.map((service, index) => {
+            const { featuredImage, title, slug, uri, servicesacf } = service;
 
-            const iconUrl = serviceIcon?.node?.sourceUrl || "";
+            const seoTitle = servicesacf?.seoTitle || title;
+            const shortDescription =
+              servicesacf?.shortDescription || "No description available.";
+            const imageUrl =
+              featuredImage?.node?.sourceUrl || "/fallback-image.jpg";
+            const buttonUrl = uri;
+            const buttonLabel = "Learn More →";
 
             return (
               <div
@@ -54,36 +54,28 @@ export default async function Services() {
                 className="bg-gray-800 border border-yellow-700/20 shadow-md rounded-2xl p-6 flex flex-col justify-between hover:shadow-yellow-500 transition-shadow duration-300"
               >
                 <div className="mb-6 w-full h-40 flex items-center justify-center bg-gray-700/50 rounded-lg overflow-hidden">
-                  {iconUrl && (
-                    <Image
-                      src={iconUrl}
-                      alt={serviceTitle || "service icon"}
-                      width={0}
-                      height={0}
-                      sizes="100vw"
-                      className="max-h-full max-w-full object-contain transform transition-transform duration-300 hover:scale-105 rounded"
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "contain",
-                      }}
-                    />
-                  )}
+                  <Image
+                    src={imageUrl}
+                    alt={seoTitle}
+                    width={400}
+                    height={240}
+                    className="rounded-lg object-cover w-full h-full hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
                 </div>
 
                 <h3 className="text-xl font-semibold mb-3 text-yellow-600">
-                  {serviceTitle}
+                  {seoTitle}
                 </h3>
+
                 <p className="text-gray-300 mb-6 text-sm">{shortDescription}</p>
 
-                {serviceButtonUrl && (
+                {buttonUrl && (
                   <Link
-                    href={serviceButtonUrl}
+                    href={buttonUrl}
                     className="inline-block text-yellow-600 font-semibold hover:text-yellow-200 hover:underline mt-auto"
-                    target="_blank"
-                    rel="noopener noreferrer"
                   >
-                    {buttonLabel || "Learn More →"}
+                    {buttonLabel}
                   </Link>
                 )}
               </div>
@@ -95,7 +87,7 @@ export default async function Services() {
           <div className="text-center">
             <Link
               href="/services"
-              className="hidden md:inline-flex items-center justify-center font-extrabold bg-yellow-800 py-2 px-4 sm:px-5 rounded-2xl cursor-pointer text-white text-base sm:text-lg hover:bg-yellow-600 transition-colors duration-200  my-8"
+              className="hidden md:inline-flex items-center justify-center font-extrabold bg-yellow-800 py-2 px-4 sm:px-5 rounded-2xl cursor-pointer text-white text-base sm:text-lg hover:bg-yellow-600 transition-colors duration-200 my-8"
             >
               View All Services
             </Link>

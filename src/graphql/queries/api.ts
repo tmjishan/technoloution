@@ -24,22 +24,32 @@ export const GET_HERO_DATA = gql`
 `;
 
 export const GET_SERVICES = gql`
-  query GetServices {
-    service {
+  query GetAllServices {
+    services {
       nodes {
-        serviceDetails {
-          serviceTitle
+        id
+        title
+        slug
+        uri
+        featuredImage {
+          node {
+            id
+            sourceUrl
+          }
+        }
+
+        servicesacf {
+          seoDescription
+          seoTitle
+          serviceDescription
+          displayHome
           serviceIcon {
             node {
               sourceUrl
+              title
             }
           }
-          servicesSubtitle
           shortDescription
-          fullDescription
-          buttonLabel
-          serviceButtonUrl
-          displayOnHome
         }
       }
     }
@@ -51,7 +61,7 @@ export const TEAM_QUERY = gql`
     teamMembers {
       nodes {
         title
-        teamInfo {
+        teamMemberInfo {
           jobTitle
         }
         featuredImage {
