@@ -8,7 +8,6 @@
   --background: #ffffff;
   --foreground: #171717;
   --font-sans: "Poppins", Arial, Helvetica, "Segoe UI", sans-serif;
-  --font-mono: "Geist Mono", "Fira Mono", "Consolas", monospace;
 }
 
 /* -------------------------------------------
@@ -99,7 +98,7 @@ body {
 
 /* ⚡ Utility class to animate gradient shift */
 .animate-gradient {
-  background-size: 200% 200%; /* বিশাল BG size রাখলে shift smooth হয় */
+  background-size: 200% 200%;
   animation: gradientShift 6s ease infinite;
 }
 
@@ -107,11 +106,11 @@ body {
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px); /* নিচ থেকে উপরে আসছে */
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
-    transform: translateY(0); /* ঠিক জায়গায় এসে থামে */
+    transform: translateY(0);
   }
 }
 

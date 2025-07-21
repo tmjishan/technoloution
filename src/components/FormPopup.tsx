@@ -13,7 +13,7 @@ const FormPopup = () => {
         const now = new Date().getTime();
         const oneHour = 60 * 60 * 1000;
         if (now - dismissedTime < oneHour) {
-          return; // ১ ঘন্টা এখনো হয়নি
+          return;
         }
       }
 

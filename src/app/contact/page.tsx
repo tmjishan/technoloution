@@ -6,8 +6,8 @@ export default function ContactPage() {
   return (
     <div>
       <RevealText text="CONtent" />
-      <ContactSection />
       <ContactInfoSection />
+      <ContactSection />
     </div>
   );
 }

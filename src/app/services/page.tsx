@@ -17,13 +17,13 @@ export default function Page() {
 
           <p className="text-base sm:text-lg md:text-xl text-gray-300 tracking-wide leading-relaxed">
             At{" "}
-            <span className="font-semibold text-yellow-600">TechnoLotion</span>,
+            <span className="font-semibold text-yellow-600">Technolotion</span>,
             we help businesses grow faster with result-driven{" "}
             <strong>Web Development</strong>, <strong>Digital Marketing</strong>
             , <strong>Virtual Assistant</strong>, and{" "}
             <strong>Graphics Design</strong> services. From building
-            high-performing websites to managing your brand’s online presence —
-            we’ve got you covered.
+            high-performing websites to managing your brand&rsquo;s online
+            presence — we&rsquo;ve got you covered.
           </p>
         </div>
       </section>

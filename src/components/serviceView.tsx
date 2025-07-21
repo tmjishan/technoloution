@@ -48,23 +48,20 @@ const ServiceView: React.FC = React.memo(() => (
       </h2>
     </div>
 
-    {/* 💠 Service Cards */}
-    <div className="relative z-10 grid gap-10 sm:grid-cols-2 lg:grid-cols-3 place-items-center">
+    {/* 💠 Responsive Grid for Service Cards */}
+    <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 place-items-center">
       {services.map((service, index) => (
         <div
           key={index}
-          className="relative bg-white/5 border border-yellow-700/20 
-            backdrop-blur-xl rounded-3xl p-8 pt-16 w-full max-w-xs text-center 
-            shadow-md hover:shadow-yellow-600/30 transition-all duration-300 group"
+          className="w-44 h-44 bg-white/10 border border-yellow-500/30 rounded-xl flex flex-col items-center justify-center text-center transition-transform duration-300 hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/40 cursor-pointer group"
         >
-          {/* Diamond Icon Container */}
-          <div className="absolute -top-10 left-1/2 -translate-x-1/2 transform rotate-45">
-            <div className="bg-yellow-600 text-white p-5 w-20 h-20 rounded-sm shadow-md flex items-center justify-center rotate-[-45deg] group-hover:scale-110 transition-transform duration-300 text-3xl sm:text-4xl">
-              {service.icon}
-            </div>
+          {/* Icon */}
+          <div className="w-14 h-14 rounded-full bg-yellow-600 flex items-center justify-center text-white text-2xl shadow-md shadow-yellow-700/50 mb-3 transition-transform duration-300 group-hover:scale-110">
+            {service.icon}
           </div>
 
-          <h3 className="text-white text-xl font-bold tracking-wide mt-6">
+          {/* Text */}
+          <h3 className="text-yellow-900 font-semibold text-base transition-all duration-300 group-hover:text-white group-hover:tracking-wider">
             {service.text}
           </h3>
         </div>

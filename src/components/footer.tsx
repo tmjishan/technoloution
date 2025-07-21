@@ -93,7 +93,7 @@ export default function Footer() {
         {/* ✅ Copyright */}
         <div className="border-t border-gray-800 mt-10 pt-6 text-center text-sm text-gray-500">
           &copy; {new Date().getFullYear()}{" "}
-          <span className="text-white font-semibold">TechnoLoution</span>. All
+          <span className="text-white font-semibold">Technoloution</span>. All
           rights reserved.
         </div>
       </footer>

@@ -60,7 +60,7 @@ export default async function ServicePage() {
               rel="noopener noreferrer"
               className="bg-yellow-900 px-6 py-2 rounded-2xl inline-block text-center text-white hover:bg-yellow-700 transition"
             >
-              Details
+              Learn More
             </Link>
           </div>
         );
