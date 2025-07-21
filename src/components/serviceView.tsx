@@ -23,7 +23,7 @@ const services: Service[] = [
 ];
 
 const ServiceView: React.FC = React.memo(() => (
-  <section className="relative w-full isolate overflow-hidden py-24 px-6 sm:px-8">
+  <section className="relative w-full isolate overflow-hidden py-24 px-6 sm:px-8 sm:mt-5 top-15">
     {/* 🔁 Background Video */}
     <video
       autoPlay

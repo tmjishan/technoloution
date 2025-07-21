@@ -25,7 +25,7 @@ export default async function Header() {
 
   return (
     <header
-      className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 text-center flex flex-col items-center justify-center gap-6"
+      className="w-full max-h-screen max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 text-center flex flex-col items-center justify-center gap-6"
       aria-label="Site Header"
     >
       {/* 🔥 Animated Gradient Title */}
