@@ -27,7 +27,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Active link check - home page জন্য exact match, বাকি গুলো startsWith
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
@@ -65,8 +64,8 @@ export default function Navbar() {
             <Image
               src="/Technoloution-website-Logo-PNG-3.png"
               alt="Logo"
-              width={200}
-              height={300}
+              width={300}
+              height={400}
               className="h-[100%] w-auto"
               priority
             />

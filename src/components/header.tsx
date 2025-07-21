@@ -25,14 +25,14 @@ export default async function Header() {
 
   return (
     <header
-      className="w-full min-h-screen max-h-screen max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 
-             flex flex-col items-center justify-center text-center 
-             py-10 sm:py-16 gap-6 overflow-hidden"
+      className="w-full sm:min-h-svw md:min-h-screen max-h-screen max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 
+             flex flex-col items-center justify-center text-center gap-15
+             md:gap-5 overflow-hidden "
       aria-label="Site Header"
     >
       {/* 🔥 Animated Gradient Title */}
       <h1
-        className={`${poppins.className} text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold leading-tight 
+        className={`${poppins.className} py-6 md:py-0 text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold leading-tight 
                bg-gradient-to-r from-yellow-600 via-white to-yellow-900 
                bg-clip-text text-transparent animate-gradient 
                tracking-wide drop-shadow-[0_4px_3px_rgba(0,0,0,0.4)]`}
