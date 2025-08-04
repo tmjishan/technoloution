@@ -10,7 +10,7 @@ interface PageProps {
 }
 
 // ISR: 10 minutes
-export const revalidate = 600;
+export const revalidate = 60;
 
 // Static params generate (for dynamic routes)
 export async function generateStaticParams() {
@@ -25,7 +25,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { slug } = await params; // **await করতে হবে**
+  const { slug } = await params;
 
   const services = await fetchServicesData();
   const service = services.find((s) => s.slug === slug);
@@ -38,7 +38,7 @@ export async function generateMetadata({
 
 // Page component - async because fetches data
 export default async function ServiceDetailPage({ params }: PageProps) {
-  const { slug } = await params; // **await করতে হবে**
+  const { slug } = await params;
 
   const services = await fetchServicesData();
   const service = services.find((s) => s.slug === slug);
