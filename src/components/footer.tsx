@@ -22,9 +22,9 @@ export default function Footer() {
                 <Image
                   src="/Technoloution-website-Logo-PNG-3.png"
                   alt="Logo"
-                  width={160}
-                  height={80}
-                  className="h-auto w-auto"
+                  width={200}
+                  height={100}
+                  className="object-fill md:object-cover"
                   priority
                 />
               </div>

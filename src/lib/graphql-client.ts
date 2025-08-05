@@ -106,7 +106,6 @@ export async function fetchAllPostsData(): Promise<AllPosts["posts"]["nodes"]> {
     }>({
       query: ALL_POSTS,
     });
-
     return data.posts.nodes;
   } catch (error) {
     console.error("❌ Blog Data Not Found:", error);

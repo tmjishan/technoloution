@@ -57,7 +57,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
     "/fallback-image.jpg";
 
   return (
-    <div className="max-w-7xl mx-auto p-6 bg-gray-900/70 text-white rounded-lg mt-10">
+    <div className="w-full md:max-w-7xl mx-auto p-6 bg-gray-900/70 text-white rounded-lg mt-10">
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
         {details?.seoTitle || service.title}
       </h1>
@@ -66,10 +66,9 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         <Image
           src={imageUrl}
           alt={details?.seoTitle || service.title}
-          fill
-          className="object-cover"
-          sizes="(max-width: 640px) 100vw, (max-width: 768px) 75vw, 50vw"
-          priority={true}
+          width={400}
+          height={300}
+          className="w-full object-fill md:object-cover rounded-2xl"
         />
       </div>
 

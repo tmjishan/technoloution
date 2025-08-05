@@ -11,7 +11,7 @@ export default async function BlogPage() {
     <div>
       <RevealText text="Blog" />
 
-      <div className="w-6xl mx-auto py-10 grid gap-6 sm:grid-cols-1 md:grid-cols-2">
+      <div className="w-full px-5 md:max-w-6xl mx-auto py-10 grid gap-6 sm:grid-cols-1 md:grid-cols-2">
         {posts.map((item, index) => {
           const imageSrc =
             item.featuredImage?.node?.sourceUrl ||
@@ -44,7 +44,7 @@ export default async function BlogPage() {
                 />
               </Link>
 
-              <div className="p-4 w-full md:w-2/3">
+              <div className="p-4 w-full md:max-w-2/3">
                 <h2 className="text-2xl font-bold text-white mb-2">
                   {item.title}
                 </h2>

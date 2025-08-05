@@ -23,23 +23,23 @@ export default async function ServicePage() {
         const imageUrl =
           item.featuredImage?.node?.sourceUrl ||
           details.serviceIcon?.node?.sourceUrl ||
-          "/fallback-image.jpg"; // fallback image
+          "/Technoloution-website-Logo-PNG-3.png"; // fallback image
 
         const altText = details.seoTitle || item.title || "Service Image";
 
         return (
           <div
             key={index}
-            className="bg-gray-800/70 p-6 rounded-lg shadow-md flex flex-col gap-4 transition hover:scale-[1.02]"
+            className="bg-gray-800/70 py-6 px-4 rounded-lg shadow-md flex flex-col gap-4 transition hover:scale-[1.02]"
           >
             {/* Image */}
             <div className="relative w-full h-40 overflow-hidden rounded-md">
               <Image
                 src={imageUrl}
                 alt={altText}
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 33vw"
+                width={400}
+                height={300}
+                className="object-fill rounded-2xl"
               />
             </div>
 

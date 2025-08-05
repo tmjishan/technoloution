@@ -51,7 +51,7 @@ export default async function Services() {
             return (
               <div
                 key={index}
-                className="bg-gray-800 border border-yellow-700/20 shadow-md rounded-2xl p-6 flex flex-col justify-between hover:shadow-yellow-500 transition-shadow duration-300"
+                className="bg-gray-800 border border-yellow-700/20 shadow-md rounded-2xl px-4 py-6 flex flex-col justify-between hover:shadow-yellow-500 transition-shadow duration-300"
               >
                 <div className="mb-6 w-full h-40 flex items-center justify-center bg-gray-700/50 rounded-lg overflow-hidden">
                   <Image
@@ -59,12 +59,12 @@ export default async function Services() {
                     alt={seoTitle}
                     width={400}
                     height={240}
-                    className="rounded-lg object-cover w-full h-full hover:scale-105 transition-transform duration-300"
+                    className="rounded-lg object-fill w-full h-full hover:scale-105 transition-transform duration-300"
                     loading="lazy"
                   />
                 </div>
 
-                <h3 className="text-xl font-semibold mb-3 text-yellow-600">
+                <h3 className="text-xl font-semibold mb-3 text-wrap text-yellow-600">
                   {seoTitle}
                 </h3>
 

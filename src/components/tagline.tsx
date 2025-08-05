@@ -4,7 +4,7 @@ import Typewriter from "./Typewriter";
 export default function Tagline() {
   return (
     <section className="bg-gray-800/50 px-3 sm:px-6 flex flex-col items-center gap-5 md:gap-8 py-16 shadow-lg">
-      <h2 className="text-3xl font-extrabold mt- 6 mb-6 text-center text-white">
+      <h2 className="text-3xl font-extrabold my-10 text-center text-white">
         Technoloution
       </h2>
 

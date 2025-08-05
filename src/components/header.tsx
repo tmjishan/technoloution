@@ -25,14 +25,14 @@ export default async function Header() {
 
   return (
     <header
-      className="w-full sm:min-h-svw md:min-h-screen max-h-screen max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 
-             flex flex-col items-center justify-center text-center gap-15
+      className="w-full sm:min-h-svw md:min-h-screen max-h-screen md:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 
+             flex flex-col items-center justify-center text-center gap-10
              md:gap-5 overflow-hidden "
       aria-label="Site Header"
     >
       {/* 🔥 Animated Gradient Title */}
       <h1
-        className={`${poppins.className} py-6 md:py-0 text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold leading-tight 
+        className={`${poppins.className} py-6 md:py-0 text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold leading-tight 
                bg-gradient-to-r from-yellow-600 via-white to-yellow-900 
                bg-clip-text text-transparent animate-gradient 
                tracking-wide drop-shadow-[0_4px_3px_rgba(0,0,0,0.4)]`}
@@ -45,7 +45,7 @@ export default async function Header() {
         {data.heroSubheading}
       </h2>
 
-      <div className="w-16 sm:w-20 h-[2px] sm:h-[3px] bg-yellow-800 rounded-full shadow-[0_0_10px_rgba(250,204,21,0.7)] mt-2 mx-auto" />
+      <div className="w-16 sm:max-w-20 h-[2px] sm:h-[3px] bg-yellow-800 rounded-full shadow-[0_0_10px_rgba(250,204,21,0.7)] mt-2 mx-auto" />
 
       {/* 🎯 CTA Button */}
       <a
