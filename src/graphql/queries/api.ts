@@ -73,3 +73,21 @@ export const TEAM_QUERY = gql`
     }
   }
 `;
+
+export const ALL_POSTS = gql`
+  query GetAllPosts {
+    posts(first: 20, where: { status: PUBLISH }) {
+      nodes {
+        title
+        slug
+        date
+        featuredImage {
+          node {
+            sourceUrl
+            altText
+          }
+        }
+      }
+    }
+  }
+`;

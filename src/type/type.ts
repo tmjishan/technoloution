@@ -63,3 +63,25 @@ export interface TeamMemberRaw {
     };
   };
 }
+
+// POST DATA
+export interface FeaturedImageNode {
+  sourceUrl: string;
+  altText?: string;
+}
+export interface FeaturedImage {
+  node: FeaturedImageNode | null;
+}
+
+export interface Post {
+  title: string;
+  slug: string;
+  date: string;
+  featuredImage: FeaturedImage;
+}
+
+export interface AllPosts {
+  posts: {
+    nodes: Post[];
+  };
+}

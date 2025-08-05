@@ -4,12 +4,14 @@ import {
   GET_HERO_DATA,
   GET_SERVICES,
   TEAM_QUERY,
+  ALL_POSTS,
 } from "@/graphql/queries/api";
 import {
   ServicesData,
   ServiceNode,
   HeroData,
   TeamMemberRaw,
+  AllPosts,
 } from "../type/type";
 
 export async function fetchGeneralData(): Promise<{
@@ -93,5 +95,21 @@ export async function fetchTeamData(): Promise<TeamMemberRaw[]> {
   } catch (error) {
     console.error("[GraphQL] fetchTeamData:", error);
     return [];
+  }
+}
+
+// All Posts
+export async function fetchAllPostsData(): Promise<AllPosts["posts"]["nodes"]> {
+  try {
+    const { data } = await client.query<{
+      posts: { nodes: AllPosts["posts"]["nodes"] };
+    }>({
+      query: ALL_POSTS,
+    });
+
+    return data.posts.nodes;
+  } catch (error) {
+    console.error("❌ Blog Data Not Found:", error);
+    throw error;
   }
 }
