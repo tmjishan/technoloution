@@ -2,45 +2,66 @@ import RevealText from "@/components/RevealText";
 import { fetchAllPostsData } from "@/lib/graphql-client";
 import Image from "next/image";
 import Link from "next/link";
+import parse from "html-react-parser";
 
 export default async function BlogPage() {
-  const Data = await fetchAllPostsData();
+  const posts = await fetchAllPostsData();
 
   return (
     <div>
       <RevealText text="Blog" />
 
-      {Data.map((item, index) => {
-        return (
-          <div key={index} className="w-5xl mx-auto">
-            <Link
-              href={item.slug}
-              className="flex gap-5 p-3 my-5 bg-amber-800 rounded-2xl justify-start items-center"
+      <div className="w-6xl mx-auto py-10 grid gap-6 sm:grid-cols-1 md:grid-cols-2">
+        {posts.map((item, index) => {
+          const imageSrc =
+            item.featuredImage?.node?.sourceUrl ||
+            "/Technoloution-website-Logo-PNG-3.png";
+
+          const imageAlt =
+            item.featuredImage?.node?.altText || item.title || "Blog Image";
+
+          const formattedDate = new Date(item.date).toLocaleDateString(
+            "en-US",
+            {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            }
+          );
+
+          return (
+            <article
+              key={index}
+              className="flex flex-col md:flex-row bg-yellow-800/70 rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 items-center"
             >
-              <Image
-                src={
-                  item.featuredImage?.node?.sourceUrl ||
-                  "/Technoloution-website-Logo-PNG-3.png"
-                }
-                alt={item?.featuredImage?.node?.altText || item.slug}
-                width={200}
-                height={200}
-                className="min-w-1/12 rounded-2xl"
-              />
-              <div>Title: {item.title}</div>
-              <div className="font-semibold text-yellow-950">
-                {" "}
-                <span className="text-yellow-700">Publishing Date:</span>{" "}
-                {new Date(item.date).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
+              <Link href={`/blog/${item.slug}`} className="w-full md:w-1/3 ">
+                <Image
+                  src={imageSrc}
+                  alt={imageAlt}
+                  width={400}
+                  height={250}
+                  className="w-full object-fit transition-all hover:scale-105 p-4 rounded-4xl"
+                />
+              </Link>
+
+              <div className="p-4 w-full md:w-2/3">
+                <h2 className="text-2xl font-bold text-white mb-2">
+                  {item.title}
+                </h2>
+
+                <div className="text-gray-100 text-sm mb-3 line-clamp-3">
+                  {item.excerpt ? parse(String(item.excerpt)) : null}
+                </div>
+
+                <p className="text-sm text-yellow-200 font-medium">
+                  <span className="text-yellow-400">Published:</span>{" "}
+                  {formattedDate}
+                </p>
               </div>
-            </Link>
-          </div>
-        );
-      })}
+            </article>
+          );
+        })}
+      </div>
     </div>
   );
 }

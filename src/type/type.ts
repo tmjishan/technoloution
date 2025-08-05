@@ -77,6 +77,7 @@ export interface Post {
   title: string;
   slug: string;
   date: string;
+  excerpt: string;
   featuredImage: FeaturedImage;
 }
 
