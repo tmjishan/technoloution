@@ -15,8 +15,7 @@ export async function generateStaticParams() {
 
 // ✅ [3] Main Page component
 export default async function Page({ params }: { params: { slug: string } }) {
-  const resolvedParams = await params;
-  const slug = resolvedParams.slug;
+  const slug = params.slug;
   const post = await fetchBlogPost(slug);
 
   return (
