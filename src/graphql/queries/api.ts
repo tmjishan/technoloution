@@ -76,17 +76,36 @@ export const TEAM_QUERY = gql`
 
 export const ALL_POSTS = gql`
   query GetAllPosts {
-    posts(first: 20, where: { status: PUBLISH }) {
+    posts(first: 50, where: { status: PUBLISH }) {
       nodes {
         title
         slug
         date
         excerpt
+        content
         featuredImage {
           node {
             sourceUrl
             altText
           }
+        }
+      }
+    }
+  }
+`;
+
+export const GET_BLOG_POST = gql`
+  query GetBlogPost($slug: ID!) {
+    post(id: $slug, idType: SLUG) {
+      id
+      title
+      slug
+      content
+      date
+      featuredImage {
+        node {
+          sourceUrl
+          altText
         }
       }
     }

@@ -44,6 +44,9 @@ body {
   z-index: 0;
 }
 
+.prose img {
+  max-width: 100vw;
+}
 /* -------------------------------------------
    Accessibility Utility
 -------------------------------------------- */
@@ -54,6 +57,12 @@ body {
   overflow: hidden;
   clip: rect(1px, 1px, 1px, 1px);
   white-space: nowrap;
+}
+
+img,
+table {
+  max-width: 100%;
+  height: auto;
 }
 
 /* -------------------------------------------

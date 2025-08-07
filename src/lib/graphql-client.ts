@@ -5,6 +5,7 @@ import {
   GET_SERVICES,
   TEAM_QUERY,
   ALL_POSTS,
+  GET_BLOG_POST,
 } from "@/graphql/queries/api";
 import {
   ServicesData,
@@ -12,7 +13,10 @@ import {
   HeroData,
   TeamMemberRaw,
   AllPosts,
+  BlogPost,
 } from "../type/type";
+
+const WP_API_URL = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL_ENDPOINT as string;
 
 export async function fetchGeneralData(): Promise<{
   title: string;
@@ -109,6 +113,24 @@ export async function fetchAllPostsData(): Promise<AllPosts["posts"]["nodes"]> {
     return data.posts.nodes;
   } catch (error) {
     console.error("❌ Blog Data Not Found:", error);
+    throw error;
+  }
+}
+
+// Post
+
+export async function fetchBlogPost(slug: string): Promise<BlogPost | null> {
+  try {
+    const { data } = await client.query<{
+      post: BlogPost | null;
+    }>({
+      query: GET_BLOG_POST,
+      variables: { slug },
+    });
+
+    return data.post;
+  } catch (error) {
+    console.error("❌ Single Blog Post Not Found:", error);
     throw error;
   }
 }

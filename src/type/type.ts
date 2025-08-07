@@ -78,6 +78,7 @@ export interface Post {
   slug: string;
   date: string;
   excerpt: string;
+  content: string;
   featuredImage: FeaturedImage;
 }
 
@@ -85,4 +86,14 @@ export interface AllPosts {
   posts: {
     nodes: Post[];
   };
+}
+
+//Single Post
+export interface BlogPost {
+  id: string;
+  title: string;
+  slug: string;
+  content: string;
+  date: string;
+  featuredImage: FeaturedImage | null;
 }

@@ -24,7 +24,7 @@ export default function Footer() {
                   alt="Logo"
                   width={200}
                   height={100}
-                  className="object-fill md:object-cover"
+                  className="object-fill md:object-cover w-auto h-auto"
                   priority
                 />
               </div>

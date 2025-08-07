@@ -30,35 +30,36 @@ export default async function BlogPage() {
           );
 
           return (
-            <article
+            <Link
               key={index}
-              className="flex flex-col md:flex-row bg-yellow-800/70 rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 items-center"
+              href={`/blog/${item.slug}`}
+              className="grid grid-flow-row-dense"
             >
-              <Link href={`/blog/${item.slug}`} className="w-full md:w-1/3 ">
+              <article className="flex flex-col md:flex-row bg-yellow-800/60 rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 items-center">
                 <Image
                   src={imageSrc}
                   alt={imageAlt}
                   width={400}
                   height={250}
-                  className="w-full object-fit transition-all hover:scale-105 p-4 rounded-4xl"
+                  className="w-1/2 h-auto object-fill transition-all hover:scale-105 p-4 rounded-4xl"
                 />
-              </Link>
 
-              <div className="p-4 w-full md:max-w-2/3">
-                <h2 className="text-2xl font-bold text-white mb-2">
-                  {item.title}
-                </h2>
+                <div className="p-4 w-full md:max-w-2/3">
+                  <h2 className="text-2xl font-bold text-white mb-2">
+                    {item.title}
+                  </h2>
 
-                <div className="text-gray-100 text-sm mb-3 line-clamp-3">
-                  {item.excerpt ? parse(String(item.excerpt)) : null}
+                  <div className="text-gray-100 text-sm mb-3 line-clamp-3">
+                    {item.excerpt ? parse(String(item.excerpt)) : null}
+                  </div>
+
+                  <p className="text-sm text-yellow-200 font-medium">
+                    <span className="text-yellow-400">Published:</span>{" "}
+                    {formattedDate}
+                  </p>
                 </div>
-
-                <p className="text-sm text-yellow-200 font-medium">
-                  <span className="text-yellow-400">Published:</span>{" "}
-                  {formattedDate}
-                </p>
-              </div>
-            </article>
+              </article>
+            </Link>
           );
         })}
       </div>
