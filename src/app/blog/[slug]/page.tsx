@@ -9,7 +9,7 @@ type PageProps = {
     slug: string;
   };
 };
-export default async function Page({ params }: PageProps) {
+export default async function Page({ params }: { params: { slug: string } }) {
   const post = await fetchBlogPost(params.slug);
 
   if (!post) return <div>Post not found</div>;
