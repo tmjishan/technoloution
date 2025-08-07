@@ -16,8 +16,6 @@ import {
   BlogPost,
 } from "../type/type";
 
-const WP_API_URL = process.env.NEXT_PUBLIC_WORDPRESS_GRAPHQL_ENDPOINT as string;
-
 export async function fetchGeneralData(): Promise<{
   title: string;
   description: string;
