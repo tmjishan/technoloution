@@ -1,22 +1,18 @@
-// src/app/blog/[slug]/page.tsx
 export const revalidate = 60;
-import { fetchAllPostsData, fetchBlogPost } from "@/lib/graphql-client";
+
+import { fetchBlogPost } from "@/lib/graphql-client";
 import Image from "next/image";
 import Link from "next/link";
 
-// ✅ [1] static paths generate
-export async function generateStaticParams() {
-  const posts = await fetchAllPostsData();
+type PageProps = {
+  params: {
+    slug: string;
+  };
+};
+export default async function Page({ params }: PageProps) {
+  const post = await fetchBlogPost(params.slug);
 
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
-}
-
-// ✅ [3] Main Page component
-export default async function Page({ params }: { params: { slug: string } }) {
-  const slug = params.slug;
-  const post = await fetchBlogPost(slug);
+  if (!post) return <div>Post not found</div>;
 
   return (
     <div className="p-6 w-full md:max-w-5xl mx-auto bg-gray-900/50 flex flex-col gap-y-10 flex-auto">

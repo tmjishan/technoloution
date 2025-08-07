@@ -116,17 +116,16 @@ export async function fetchAllPostsData(): Promise<AllPosts["posts"]["nodes"]> {
 }
 
 // Post
-
 export async function fetchBlogPost(slug: string): Promise<BlogPost | null> {
   try {
-    const { data } = await client.query<{
-      post: BlogPost | null;
-    }>({
+    const { data } = await client.query<{ post: BlogPost | null }>({
       query: GET_BLOG_POST,
       variables: { slug },
     });
 
-    return data.post;
+    const blogPost = data.post;
+
+    return blogPost;
   } catch (error) {
     console.error("❌ Single Blog Post Not Found:", error);
     throw error;
