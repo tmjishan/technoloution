@@ -4,11 +4,6 @@ import { fetchBlogPost } from "@/lib/graphql-client";
 import Image from "next/image";
 import Link from "next/link";
 
-type PageProps = {
-  params: {
-    slug: string;
-  };
-};
 export default async function Page({ params }: { params: { slug: string } }) {
   const post = await fetchBlogPost(params.slug);
 
