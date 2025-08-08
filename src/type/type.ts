@@ -87,13 +87,3 @@ export interface AllPosts {
     nodes: Post[];
   };
 }
-
-//Single Post
-export interface BlogPost {
-  id: string;
-  title: string;
-  slug: string;
-  content: string;
-  date: string;
-  featuredImage: FeaturedImage | null;
-}

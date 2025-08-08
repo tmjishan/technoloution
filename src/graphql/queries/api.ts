@@ -93,21 +93,3 @@ export const ALL_POSTS = gql`
     }
   }
 `;
-
-export const GET_BLOG_POST = gql`
-  query GetBlogPost($slug: ID!) {
-    post(id: $slug, idType: SLUG) {
-      id
-      title
-      slug
-      content
-      date
-      featuredImage {
-        node {
-          sourceUrl
-          altText
-        }
-      }
-    }
-  }
-`;
