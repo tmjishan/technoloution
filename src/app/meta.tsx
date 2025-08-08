@@ -1,10 +1,5 @@
-export const revalidate = 60;
-import "./globals.css";
-import type { ReactNode } from "react";
-import ClientLayout from "../components/client-layout";
 import { Metadata } from "next";
 
-// ✅ SEO Metadata
 export const metadata: Metadata = {
   title: "Technoloution | Web & IT",
 
@@ -32,20 +27,3 @@ export const metadata: Metadata = {
     type: "website",
   },
 };
-
-// ✅ Root Layout Component
-export default function RootLayout({ children }: { children: ReactNode }) {
-  return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={`
-          antialiased 
-          max-w-7xl mx-auto 
-          bg-white text-gray-900
-        `}
-      >
-        <ClientLayout>{children}</ClientLayout>
-      </body>
-    </html>
-  );
-}
