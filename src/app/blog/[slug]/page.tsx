@@ -63,7 +63,7 @@ export default async function Page({ params }: PageProps) {
       <p className="text-gray-500">{post?.date}</p>
       <div className="mt-4 prose prose-invert">
         <div
-          className="flex flex-col gap-y-5 flex-1 overflow-hidden"
+          className="flex flex-col gap-y-5 flex-1 overflow-hidden text-white"
           dangerouslySetInnerHTML={{ __html: post?.content }}
         />
       </div>

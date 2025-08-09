@@ -49,7 +49,7 @@ export default async function Header() {
 
       {/* 🎯 CTA Button */}
       <a
-        href={data.heroButtonUrl}
+        href="#CalendlyWidget"
         title={data.heroCtaButtonText}
         aria-label={data.heroCtaButtonText}
         className="inline-flex items-center justify-center gap-2 font-bold 
