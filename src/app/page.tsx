@@ -1,5 +1,4 @@
 export const revalidate = 60;
-import CalendlyWidget from "@/components/CalendlyWidget";
 import Header from "@/components/header";
 import Services from "@/components/Services";
 import ServiceView from "@/components/serviceView";
@@ -12,7 +11,6 @@ export default function Home() {
       <ServiceView />
       <Tagline />
       <Services />
-      <CalendlyWidget />
     </>
   );
 }

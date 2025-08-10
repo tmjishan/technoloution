@@ -1,8 +1,8 @@
 // ✅ Set revalidation interval (ISR)
 export const revalidate = 60;
 import { fetchHeroData } from "@/lib/graphql-client";
-import { FaArrowDownLong } from "react-icons/fa6";
 import { Poppins } from "next/font/google";
+import CalendlyPopup from "./CalendlyWidget";
 
 // ✅ Load Google Font (Poppins)
 const poppins = Poppins({
@@ -48,18 +48,8 @@ export default async function Header() {
       <div className="w-16 sm:max-w-20 h-[2px] sm:h-[3px] bg-yellow-800 rounded-full shadow-[0_0_10px_rgba(250,204,21,0.7)] mt-2 mx-auto" />
 
       {/* 🎯 CTA Button */}
-      <a
-        href="#CalendlyWidget"
-        title={data.heroCtaButtonText}
-        aria-label={data.heroCtaButtonText}
-        className="inline-flex items-center justify-center gap-2 font-bold 
-               bg-yellow-900 text-white py-3 px-5 sm:px-7 md:px-8 text-sm sm:text-base md:text-lg 
-               rounded-full hover:bg-yellow-700 hover:scale-105 transition-all duration-300 
-               animate-bounce-slow shadow-md hover:shadow-yellow-500/40"
-      >
-        <FaArrowDownLong className="animate-pulse text-base sm:text-lg" />
-        {data.heroCtaButtonText}
-      </a>
+
+      <CalendlyPopup />
     </header>
   );
 }

@@ -246,3 +246,24 @@ table {
 .animate-zoom-bounce {
   animation: zoomBounce 0.6s ease-in-out forwards;
 }
+
+/* calendly CSS */
+.calendly-overlay {
+  backdrop-filter: blur(8px); /* blur amount */
+  -webkit-backdrop-filter: blur(8px); /* Safari support */
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.3
+  ) !important; /* semi-transparent dark bg */
+}
+
+.calendly-popup {
+  padding: 0 5px !important;
+}
+.calendly-badge-widget iframe,
+.calendly-inline-widget iframe,
+.calendly-overlay iframe {
+  border-radius: 0.5%;
+}
