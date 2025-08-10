@@ -249,8 +249,8 @@ table {
 
 /* calendly CSS */
 .calendly-overlay {
-  backdrop-filter: blur(8px); /* blur amount */
   -webkit-backdrop-filter: blur(8px); /* Safari support */
+  backdrop-filter: blur(8px) !important;
   background-color: rgba(
     0,
     0,
