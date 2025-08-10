@@ -1,13 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
-/**
- * Drop‑in Calendly embed that avoids the external script entirely.
- * This fixes the common "first time loads, then spinner forever" issue
- * that happens when the Calendly script doesn't re‑initialize on
- * client‑side navigations in Next.js.
- */
 export default function CalendlyWidgetIframe() {
   const [loaded, setLoaded] = useState(false);
   const [src, setSrc] = useState<string | null>(null);
