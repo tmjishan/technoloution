@@ -63,6 +63,7 @@ export const TEAM_QUERY = gql`
         title
         teamMemberInfo {
           jobTitle
+          description
         }
         featuredImage {
           node {

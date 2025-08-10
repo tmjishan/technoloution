@@ -56,6 +56,7 @@ export interface TeamMemberRaw {
   title: string;
   teamMemberInfo: {
     jobTitle: string;
+    description: string;
   };
   featuredImage: {
     node: {

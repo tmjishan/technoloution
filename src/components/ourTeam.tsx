@@ -19,30 +19,36 @@ export default async function TeamSection() {
         </p>
       </div>
 
-      <div className="mt-14 grid gap-6 sm:gap-8 md:gap-10 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-14 grid gap-6 sm:gap-8 md:gap-10 grid-cols-1 md:max-w-5xl mx-auto">
         {teamMembers.map((member: TeamMemberRaw, idx: number) => (
           <div
             key={idx}
-            className="group bg-gray-800/40 hover:bg-gray-800/70 backdrop-blur-md border border-yellow-800/10 shadow-md hover:shadow-yellow-600/30 text-white rounded-2xl p-6 flex flex-col items-center gap-4 transition-all duration-300 ease-in-out hover:animate-zoom-bounce"
+            className="group flex flex-col md:flex-row items-center justify-center gap-4 bg-gray-800/40 hover:bg-gray-800/70 backdrop-blur-md border border-yellow-800/10 shadow-md hover:shadow-yellow-600/30 text-white rounded-2xl px-4  py-10 transition-all duration-300 ease-in-out hover:animate-zoom-bounce"
           >
             {member.featuredImage?.node?.sourceUrl ? (
               <Image
                 src={member.featuredImage.node.sourceUrl}
                 alt={member.title}
-                width={96} // 24 * 4 (Tailwind unit to px)
-                height={96}
+                width={200} // 24 * 4 (Tailwind unit to px)
+                height={200}
                 className="rounded-full object-cover border-2 border-yellow-800 shadow-md hover:scale-105 transition-transform duration-300"
               />
             ) : (
-              <div className="w-24 h-24 rounded-full bg-yellow-400 flex items-center justify-center text-gray-900 font-bold text-xl">
+              <div className="w-24 h-24 rounded-full bg-yellow-400 flex items-left justify-center text-gray-900 font-bold text-xl">
                 {member.title.charAt(0)}
               </div>
             )}
-            <div className="text-yellow-800 text-xl font-semibold text-center">
-              {member.title}
+            <div className="text-yellow-800 text-xl font-semibold text-left">
+              <p className="text-gray-100 text-sm sm:text-base text-left">
+                {member.title || "Name Of Team"}
+              </p>
+              <p className="text-gray-100/50 font-normal text-sm sm:text-base text-left">
+                {member?.teamMemberInfo?.jobTitle || "Job Title"}
+              </p>
             </div>
-            <p className="text-gray-100 text-sm sm:text-base text-center">
-              {member?.teamMemberInfo?.jobTitle || "HHHH"}
+
+            <p className="text-gray-100/60 tracking-wide text-sm sm:text-base text-justify md:text-left md:max-w-xl md:p-5">
+              {member?.teamMemberInfo?.description || "Description"}
             </p>
           </div>
         ))}
