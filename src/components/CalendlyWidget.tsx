@@ -1,52 +1,47 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import Script from "next/script";
+import { useEffect, useMemo, useState } from "react";
 
-export default function CalendlyWidget() {
+/**
+ * Drop‑in Calendly embed that avoids the external script entirely.
+ * This fixes the common "first time loads, then spinner forever" issue
+ * that happens when the Calendly script doesn't re‑initialize on
+ * client‑side navigations in Next.js.
+ */
+export default function CalendlyWidgetIframe() {
   const [loaded, setLoaded] = useState(false);
-  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [src, setSrc] = useState<string | null>(null);
 
+  // Build the Calendly embed URL on the client to include your domain
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const observer = new MutationObserver((mutations) => {
-      for (const m of mutations) {
-        m.addedNodes.forEach((node) => {
-          if (node instanceof HTMLIFrameElement) {
-            node.onload = () => setLoaded(true);
-          }
-        });
-      }
+    const base = "https://calendly.com/sakib-/discussion-call"; // <-- your event link
+    const domain = window.location.hostname;
+    const params = new URLSearchParams({
+      embed_domain: domain,
+      embed_type: "Inline",
+      hide_gdpr_banner: "1",
     });
-
-    observer.observe(container, { childList: true, subtree: true });
-
-    return () => observer.disconnect();
+    setSrc(`${base}?${params.toString()}`);
   }, []);
 
   return (
-    <div id="CalendlyWidget" className="w-full max-w-7xl mx-auto px-4">
+    <div className="w-full max-w-7xl mx-auto px-4" id="CalendlyWidget">
       {!loaded && (
-        <div className="flex justify-center items-center h-[100vh]">
+        <div className="flex justify-center items-center h-[60vh]">
           <span className="h-6 w-6 border-2 border-gray-300 border-t-transparent rounded-full animate-spin mr-2"></span>
           <span className="text-gray-600">Loading...</span>
         </div>
       )}
 
-      <div
-        ref={containerRef}
-        className={`calendly-inline-widget w-full min-w-[220px] h-[100vh] ${
-          loaded ? "block" : "hidden"
-        }`}
-        data-url="https://calendly.com/sakib-/discussion-call"
-      />
-
-      <Script
-        src="https://assets.calendly.com/assets/external/widget.js"
-        strategy="lazyOnload"
-      />
+      {src && (
+        <iframe
+          title="Calendly Scheduling"
+          src={src}
+          onLoad={() => setLoaded(true)}
+          className={`w-full h-[100vh] ${loaded ? "block" : "hidden"}`}
+          style={{ minWidth: 220, border: 0 }}
+        />
+      )}
     </div>
   );
 }
