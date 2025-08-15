@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import ClientLayout from "../components/client-layout";
 import { defaultMetadata } from "./meta";
 import type { Metadata } from "next";
+import CalendlyPopup from "@/components/CalendlyWidget";
 
 export const metadata: Metadata = {
   ...defaultMetadata, // base metadata
@@ -21,7 +22,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           bg-white text-gray-900
         `}
       >
-        <ClientLayout>{children}</ClientLayout>
+        <ClientLayout>
+          {children}
+          <CalendlyPopup showFloatBtn />
+        </ClientLayout>
       </body>
     </html>
   );

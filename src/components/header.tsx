@@ -49,7 +49,7 @@ export default async function Header() {
 
       {/* 🎯 CTA Button */}
 
-      <CalendlyPopup />
+      <CalendlyPopup showHeroBtn />
     </header>
   );
 }
