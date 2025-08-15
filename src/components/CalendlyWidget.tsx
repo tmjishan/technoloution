@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { FaArrowDownLong } from "react-icons/fa6";
 import { FaRegCalendarAlt } from "react-icons/fa";
 
@@ -32,8 +32,12 @@ export default function CalendlyPopup({
 }: Props) {
   const [ready, setReady] = useState(false);
 
-  // Build the Calendly URL with embed params
-  const buildUrl = () => {
+  // guard refs
+  const badgeInitRef = useRef(false);
+  const scriptOnloadAttachedRef = useRef(false);
+
+  // Build the Calendly URL with embed params (memoized)
+  const buildUrl = useCallback(() => {
     const base = "https://calendly.com/sakib-/discussion-call";
     const domain =
       typeof window !== "undefined" ? window.location.hostname : "";
@@ -43,10 +47,11 @@ export default function CalendlyPopup({
       hide_gdpr_banner: "1",
     });
     return `${base}?${params.toString()}`;
-  };
+  }, []);
 
+  // Load Calendly CSS (once)
   useEffect(() => {
-    // Add Calendly CSS (once)
+    if (typeof document === "undefined") return;
     const cssId = "calendly-widget-css";
     if (!document.getElementById(cssId)) {
       const link = document.createElement("link");
@@ -55,51 +60,67 @@ export default function CalendlyPopup({
       link.href = "https://assets.calendly.com/assets/external/widget.css";
       document.head.appendChild(link);
     }
+  }, []);
 
-    // Add Calendly JS (once)
+  // Load Calendly script (once) and set ready
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+
+    const src = "https://assets.calendly.com/assets/external/widget.js";
     const existing = document.querySelector<HTMLScriptElement>(
-      'script[src="https://assets.calendly.com/assets/external/widget.js"]'
+      `script[src="${src}"]`
     );
 
-    if (existing?.getAttribute("data-loaded") === "true") {
+    // If Calendly already loaded, mark ready
+    if (window.Calendly) {
       setReady(true);
-    } else {
-      const script = existing ?? document.createElement("script");
-      script.src = "https://assets.calendly.com/assets/external/widget.js";
-      script.async = true;
-      script.onload = () => {
-        script.setAttribute("data-loaded", "true");
-        setReady(true);
-
-        // Optional badge init
-        if (useBadge && window.Calendly?.initBadgeWidget) {
-          window.Calendly.initBadgeWidget({
-            url: buildUrl(),
-            text: "Schedule time with me",
-            color: "#0069ff",
-            textColor: "#ffffff",
-            branding: true,
-          });
-        }
-      };
-      if (!existing) document.body.appendChild(script);
+      return;
     }
 
-    if (useBadge && window.Calendly?.initBadgeWidget && ready) {
-      window.Calendly.initBadgeWidget({
-        url: buildUrl(),
-        text: "Schedule time with me",
-        color: "#0069ff",
-        textColor: "#ffffff",
-        branding: true,
-      });
+    // If script exists but not loaded yet, attach onload once
+    if (existing) {
+      if (!scriptOnloadAttachedRef.current) {
+        existing.addEventListener("load", () => {
+          setReady(true);
+        });
+        scriptOnloadAttachedRef.current = true;
+      }
+      return;
     }
-  }, [useBadge, ready]);
+
+    // Otherwise, create the script
+    const script = document.createElement("script");
+    script.src = src;
+    script.async = true;
+    script.addEventListener("load", () => {
+      setReady(true);
+    });
+    document.body.appendChild(script);
+  }, []);
+
+  // Initialize badge widget exactly once (if requested)
+  useEffect(() => {
+    if (!useBadge) return;
+    if (!ready) return;
+    if (badgeInitRef.current) return;
+    if (!window.Calendly?.initBadgeWidget) return;
+
+    window.Calendly.initBadgeWidget({
+      url: buildUrl(),
+      text: "Schedule time with me",
+      color: "#0069ff",
+      textColor: "#ffffff",
+      branding: true,
+    });
+    badgeInitRef.current = true;
+  }, [useBadge, ready, buildUrl]);
 
   const openPopup = () => {
     if (!ready || !window.Calendly) return;
     window.Calendly.initPopupWidget({ url: buildUrl() });
   };
+
+  // যদি ব্যাজ ব্যবহার করেন, আলাদা বাটন দেখানোর দরকার নেই
   if (useBadge) return null;
 
   if (!showHeroBtn && !showFloatBtn) return null;
@@ -120,11 +141,15 @@ export default function CalendlyPopup({
         >
           {!ready ? (
             <>
-              <span className="h-4 w-4 border-2 border-gray-300 border-t-transparent rounded-full animate-spin" />
-              <span>Loading scheduler…</span>
+              <span
+                className="h-4 w-4 border-2 border-gray-300 border-t-transparent rounded-full animate-spin"
+                aria-hidden="true"
+              />
+              <span aria-live="polite">Loading scheduler…</span>
             </>
           ) : (
             <span className="flex flex-row items-center gap-2 tracking-wider">
+              <span className="sr-only">Schedule a call</span>
               Schedule a call
               <FaArrowDownLong className="animate-pulse text-base sm:text-lg" />
             </span>
@@ -132,35 +157,35 @@ export default function CalendlyPopup({
         </button>
       )}
 
-      {/* FLOATING BUTTON (bottom-right) */}
+      {/* FLOATING BUTTON (edge-left, vertical text) */}
       {showFloatBtn && (
         <button
           type="button"
           onClick={openPopup}
           disabled={!ready}
           aria-label="Schedule a call (floating)"
-          className="group fixed top-30 md:left-[-5px] z-50 bg-yellow-800 text-white
-               shadow-lg cursor-pointer transition-all 
-               md:w-10 md:hover:left-0 
-               rounded-r-md  
-               overflow-hidden 
-               "
+          className="group fixed top-28 md:left-[-5px] z-50 bg-yellow-800 text-white
+                     shadow-lg cursor-pointer transition-all 
+                     md:w-10 md:hover:left-0 
+                     rounded-r-md overflow-hidden"
         >
           {!ready ? (
             <span
               className="[writing-mode:vertical-rl] rotate-180
-                       flex items-center justify-center px-2 py-3 text-xs"
+                         flex items-center justify-center px-2 py-3 text-xs"
+              aria-live="polite"
             >
               Loading…
             </span>
           ) : (
             <span
               className="[writing-mode:vertical-rl] rotate-180
-                       flex items-center justify-center gap-2 px-2 md:py-3
-                       tracking-wider text-xs md:text-sm"
+                         flex items-center justify-center gap-2 px-2 md:py-3
+                         tracking-wider text-xs md:text-sm"
             >
+              <span className="sr-only">Book a call</span>
               Book A Call{" "}
-              <FaRegCalendarAlt className="animate-pulse md:text-xl " />
+              <FaRegCalendarAlt className="animate-pulse md:text-xl" />
             </span>
           )}
         </button>
