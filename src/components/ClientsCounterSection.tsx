@@ -159,7 +159,7 @@ const ClientsCounterSection: React.FC<ClientsCounterSectionProps> = ({
           {heading}
         </h2>
         {subtext && (
-          <p className="mx-auto mt-4 max-w-2xl text-base text-zinc-600 sm:text-lg dark:text-zinc-300">
+          <p className="mx-auto mt-4 max-w-2xl text-base text-yellow-900 sm:text-lg dark:text-yellow-900">
             {subtext}
           </p>
         )}
@@ -174,11 +174,10 @@ const ClientsCounterSection: React.FC<ClientsCounterSectionProps> = ({
           {/* Clients */}
           <div
             className="
-              group rounded-2xl border border-yellow-500/20
+              group rounded-2xl border border-yellow-900/50
               bg-white/50 p-6 backdrop-blur
               shadow-sm hover:shadow-md transition
-              dark:bg-white/10 dark:border-yellow-300/20
-            "
+              dark:bg-white/10"
           >
             <div className="text-sm uppercase tracking-wide text-zinc-600 dark:text-zinc-300">
               Clients
@@ -189,16 +188,14 @@ const ClientsCounterSection: React.FC<ClientsCounterSectionProps> = ({
                 start={0}
                 duration={1600}
                 suffix="+"
-                className="text-5xl font-black leading-none text-yellow-900 sm:text-6xl md:text-7xl "
+                className="text-5xl font-black leading-none text-white sm:text-6xl md:text-7xl "
               />
             </div>
-            <p className="mt-3 text-sm text-zinc-500 dark:text-zinc-400">
-              And counting…
-            </p>
+            <p className="mt-3 text-sm text-yellow-900">And counting…</p>
           </div>
 
           {/* চাইলে আরও স্ট্যাট যোগ করুন */}
-          <div className="rounded-2xl border border-yellow-500/20 bg-white/50 p-6 backdrop-blur shadow-sm dark:bg-white/10 dark:border-yellow-300/20">
+          <div className="rounded-2xl border border-yellow-900/50 bg-white/50 p-6 backdrop-blur shadow-sm dark:bg-white/10 ">
             <div className="text-sm uppercase tracking-wide text-zinc-600 dark:text-zinc-300">
               Projects Delivered
             </div>
@@ -208,12 +205,12 @@ const ClientsCounterSection: React.FC<ClientsCounterSectionProps> = ({
                 start={20}
                 duration={1800}
                 suffix="+"
-                className="text-4xl font-extrabold leading-none text-yellow-900 sm:text-5xl md:text-6xl "
+                className="text-4xl font-extrabold leading-none text-white sm:text-5xl md:text-6xl "
               />
             </div>
           </div>
 
-          <div className="rounded-2xl border border-yellow-500/20 bg-white/50 p-6 backdrop-blur shadow-sm dark:bg-white/10 dark:border-yellow-300/20">
+          <div className="rounded-2xl border border-yellow-900/50 bg-white/50 p-6 backdrop-blur shadow-sm dark:bg-white/10 ">
             <div className="text-sm uppercase tracking-wide text-zinc-600 dark:text-zinc-300">
               Countries Served
             </div>
@@ -223,7 +220,7 @@ const ClientsCounterSection: React.FC<ClientsCounterSectionProps> = ({
                 start={0}
                 duration={1400}
                 suffix="+"
-                className="text-4xl font-extrabold leading-none text-yellow-900 sm:text-5xl md:text-6xl "
+                className="text-4xl font-extrabold leading-none text-white sm:text-5xl md:text-6xl "
               />
             </div>
           </div>

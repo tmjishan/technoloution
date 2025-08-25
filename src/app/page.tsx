@@ -14,7 +14,7 @@ export default function Home() {
       <Services />
       <ClientsCounterSection
         clients={200}
-        heading="200+ Clients & Growing"
+        heading="Clients & Growing"
         subtext="Your growth partner for the long run."
       />
     </>
