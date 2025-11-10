@@ -22,7 +22,7 @@ const staticFallback = {
   title: "Let׳s Meet",
   subtitle: "Coffee Is On Us",
   phoneTitle: "Give Us A Call​​",
-  phones: ["+1 (647) 576-2115", "+1 (647) 349-2332"],
+  phones: ["+88017-15133672"],
   mapTitle: "We're On The Map​​",
   locations: [
     { address: "250 University Ave #213, Toronto, ON M5H 3E5" },
@@ -30,7 +30,7 @@ const staticFallback = {
     { address: "1 Russell St E, #609, Lindsay, ON K9V 1Z7" },
   ],
   emailTitle: "Send Us A Message​​",
-  email: "contact@23e2.com",
+  email: "info@technoloution.com",
 };
 
 export default function ContactInfoSection(props: ContactInfoProps) {

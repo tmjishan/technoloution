@@ -188,7 +188,7 @@ const ClientsCounterSection: React.FC<ClientsCounterSectionProps> = ({
                 start={0}
                 duration={1600}
                 suffix="+"
-                className="text-5xl font-black leading-none text-white sm:text-6xl md:text-7xl "
+                className="text-5xl font-black leading-none sm:text-6xl md:text-7xl dark:text-white text-zinc-500"
               />
             </div>
             <p className="mt-3 text-sm text-yellow-900">And counting…</p>
@@ -205,7 +205,7 @@ const ClientsCounterSection: React.FC<ClientsCounterSectionProps> = ({
                 start={20}
                 duration={1800}
                 suffix="+"
-                className="text-4xl font-extrabold leading-none text-white sm:text-5xl md:text-6xl "
+                className="text-4xl font-extrabold leading-none dark:text-white text-zinc-500 sm:text-5xl md:text-6xl "
               />
             </div>
           </div>
@@ -220,7 +220,7 @@ const ClientsCounterSection: React.FC<ClientsCounterSectionProps> = ({
                 start={0}
                 duration={1400}
                 suffix="+"
-                className="text-4xl font-extrabold leading-none text-white sm:text-5xl md:text-6xl "
+                className="text-4xl font-extrabold leading-none dark:text-white text-zinc-500 sm:text-5xl md:text-6xl "
               />
             </div>
           </div>
